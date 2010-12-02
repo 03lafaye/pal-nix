@@ -1,0 +1,782 @@
+# unixtricks - seemingly useful unix knowledge 
+#
+# $Author$
+# $Date$
+# $Revision$   
+
+# * Vi * {{{1 #
+# Center text {{{2
+:(range)ce (width) 
+
+# Switch to super user from within vim {{{2
+:w !sudo tee %
+
+# Sessions {{{2
+# to store current session {{{3
+:mksession
+# to load session {{{3
+vi -S Session.vim
+# Date and Time insert (in insert mode) {{{2 
+<C-r>=strftime("%Y-%m-%d")<CR>
+
+# To get syntax coloring on vim: {{{2
+:syntax on
+:source filename.vim
+
+# To turn on filetype indent {{{2
+:filetype indent on
+
+# Set up .html files to use smarty syntax {{{2
+- edit filetype.vim
+- create smarty.vim in indent folder within which you source html.vim
+
+# setting swp directory {{{2
+:!if[ ! -d "tmp" ]; then mkdir tmp; fi
+:set dir=./tmp
+
+# can put this in ~/.vimrc file to do on startup
+
+# Editing multiple files {{{2
+vi file1 file2 file3
+:n         # Edit next file (file2)
+:rew     # Rewind to first file (file1)
+
+# Read in text file or output {{{2
+:r textfile
+:r ! command
+
+# Windowing {{{2
+:sp            - split-frame window
+:sp file    - new split-frame window opening file 
+:vsp         - vertical split frame window
+Ctrl-W x 2     - goto next window
+
+# Search and Replace {{{2
+
+# non-greedy quantifiers {{{3 
+# matches 0 or more of the preceding atom, as few as possible {{{4
+\{-}
+# matches 1 or more of the preceding characters... {{{4
+\{-n,m}
+# matches at lease or more of the preceding characters... {{{4
+\{-n,}
+# matches 1 or more of the preceding characters... {{{4
+\{-,m}
+
+# search for occurrences of word under cursor {{{3
+*            
+
+# find pattern srch {{{3
+/srch
+
+# look forwards for next match {{{3
+n
+
+# look backwards for next match {{{3
+N
+
+# replace first match in current line {{{3
+:s/s/r/
+
+# replace all matchs in current line {{{3
+:s/s/r/g
+
+# replace all matchs in whole file {{{3
+:%s/s/r/g
+
+# replace all matchs in whole file with confirmation {{{3
+:%s/s/r/gc
+
+# replace cursor word {{{3
+:%s/<C-r><C-w>/bar/g
+
+# replace yanked text {{{3
+:%s/<C-r>"/bar/g
+
+# make search string lower case {{{3
+:%s/s/\L&/
+
+# make search string upper case {{{3
+:%s/s/\u&/
+
+# search and replace increment number 1 using mark set at first line {{{3
+:[range]s/1/\=line(".")-line("'a")+1/g
+
+# Delete all lines matching pattern {{{3
+:g/pattern/d
+
+# Delete all lines not matching pattern {{{3
+:g!/pattern/d
+
+# E.g. to remove ^M in vi use {{{2
+:%s/^V^M//g
+
+# Strip blanks at end of line {{{2
+:%s/{TAB}*$//
+
+# Cut {{{2
+yy      - yank line
+nyy     - yank n lines
+y$      - yank from cursor to end of line
+J       - yank last line to current line 
+"ay     - yank selection into register 'a'
+
+# Paste {{{2
+P          - paste after cursor
+p          - paste before cursor
+"ap        - paste contents of register 'a'
+:set paste - allows insert of pasted litteral text 
+
+# Replace {{{2
+r(char) - replace current char with given char
+cw - change word
+
+# Delete {{{2
+dd        - delete line
+ndd       - delete n lines
+dnw       - delete next n words
+d}        - delete remainder of paragraph
+d)        - delete remainder of sentence
+
+# Undo  {{{2
+u                      - undo last change
+Ctrl-R                 - redo last change
+g-                     - move back in time through different undo branches
+g+                     - move forward in time through different undo branches 
+:earlier <time_offset> - move back in time e.g. :earlier 10m
+:later <time_offset>   - move forward in time e.g. :later 30s
+
+# turn off highlighting {{{2
+:nohlsearch  or :set nohlsearch
+
+# Visual Mode {{{2
+v         - to enter visual mode
+d         - after having selected text, will delete selection
+y         - after having selected text, will yank selection
+U        - after having selected text, will make text upper case
+
+# Motion {{{2
+0         - beginning of line
+$         - end of line
+^         - start of first word on line
+-         - previous line
+<cr>      - next line
+gg        - beginning of file
+G         - end of file
+w/W       - beginning of next word / bigword
+e/E       - end of next word / bigword
+:n        - line n
+:$        - last line
+.         - repeat last edit command
+[[        - previous first-column '{'
+]]        - next first-column '{'
+[]        - previous first column '}'
+]]        - next first column '}'
+{         - previous blank line
+}         - next blank line
+*         - next instance of current word
+'#'       - previous instance of current word
+"         - location where last search started 
+fC        - go to next occurance of C
+<n>->     - n chars to right
+<n><-     - n chars to left
+<n>w      - n words right
+<n>b      - n words left
+<n>e      - end of nth word
+$         - end of line
+<N>G      - Goto line N
+``        - Context mark; jumps to location of previous jump
+Ctrl-F    - move forward one screen
+Ctrl-B    - move backwards one screen
+Ctrl-E    - scroll window up
+Ctrl-Y    - scroll window down
+Ctrl-O    - Back one jump
+Ctrl-I    - Forward one jump
+
+# Keeping track of where you are {{{2
+<Ctrl+g>  - Shows where you are in the file in the status bar
+g<Ctrl+g> - Shows exactly where your cursor is
+
+# Split window pane {{{2
+:sp  # horizontal split
+:vsp # vertical split
+
+# use Ctrl-W x 2 to switch between windows
+
+# Go to definition {{{2
+gD
+
+# Go to include file (requires path variable to be set in vi) {{{2
+gf
+
+# Mark position to keyboard key {{{2
+ma
+mA # Global mark: jumps you back to the other file with this mark
+
+# Return to marked position {{{2
+'a
+'A
+
+# Show matching brace or parenthesis {{{2
+% # See help matchpairs
+
+# Fix indent {{{2
+=
+
+# Tab Pages {{{2
+#to edit file in a new tab {{{3
+:tabe <file>
+
+# to close  {{{3
+:tabc
+
+# to close all other tabs {{{3
+:tabo
+
+# next/prev {{{3
+:tabn, :tabp (or gt,gT to switch)
+
+# move tab to position N {{{3
+:tabmove N
+
+# move split pane to new tab {{{3
+ctrl+w, shift+t
+
+# execute command on all tabs e.g quit all tabs {{{3
+:tabdo q
+
+# Visual block mode {{{2
+Ctrl-V
+
+# Executing Unix commands using the Bang! {{{2
+:!pwd         # shows current working directory
+:r !date    # reads the results from the date onto line aft. cursor
+:! wc %        # get word count of current document
+:!!            # execute last external command (Bang! Bang!)
+
+# Sorting {{{2
+# Mark a block of text at top line and bottom line of block 
+# i.e. mt and mb on two separate lines
+:'t,'b !sort
+# Alternatively can use to sort 3 lines from the cursor
+:.,+3!sort
+
+# Macros {{{2
+:map letter commands_strung_together  # needs command input
+:map! string commands_strung_together # keystroke remapping
+
+# Completion {{{2
+# Tab completion of functions, variables, jargon and product names {{{3
+<C-p> and <C-n>
+# completefunc completion {{{3
+<C-x><C-u>
+# insert words from dictionary {{{3
+set dictionary=~/.ispell_british,/usr/share/dict/words
+set complete=.,w,k
+# Filetype dictionary completion {{{3
+<C-x><C-o>                         
+# dictionary lookup {{{3
+<C-x><C-k>
+ 
+# see spell suggestions for misspelled words {{{2
+z=
+
+# working with multiple files {{{2
+vim *html
+find -type f | xargs -o vim
+vim `find -type f`
+
+# move between mutiple files {{{2
+nnoremap <C-N> :next<Enter>
+nnoremap <C-P> :prev<Enter>
+
+# multiple windows {{{2
+vim -o *html
+
+# open multiple tabs in vim {{{2
+vim -p file1 file2 file 3
+
+# go to top of file {{{2
+gg
+
+# ctags {{{2
+
+Ctrl-]      # go to tag
+Ctrl-t      # pop off from tag stack
+tnext       # if more than one match go to next
+tprevious   # go back 
+
+# helptags {{{2
+name file blah.txt
+add tags like *this-is-a-tag*
+add links like |this-is-a-tag|
+generate tags file :helptags dir
+
+# include file searching {{{2
+:h include-search
+
+# folds {{{2
+# use {{{n where n is the level of folding to mark folds
+zc            # close current fold
+zF            # create new fold of selected lines
+zd            # delete current fold
+zm            # increase fold level (for multiple fold levels)
+zf#j        # creates a fold from the cursor down  #  lines.
+zf/string    # creates a fold from the cursor to string .
+zj            # moves the cursor to the next fold.
+zk            # moves the cursor to the previous fold.
+zo            # opens a fold at the cursor.
+zO            # opens all folds at the cursor.
+zm            # increases the foldlevel by one.
+zM            # closes all open folds.
+zr            # decreases the foldlevel by one.
+zR            # decreases the foldlevel to zero -- all folds will be open.
+zd            # deletes the fold at the cursor.
+zE            # deletes all folds.
+[z            # move to start of open fold.
+]z            # move to end of open fold.
+
+# modeline - when set first and last 5 lines are checked for editing cmds {{{2 
+<sp> vi:set options|map ...|ab ...|!...:
+vi:set ts=4 sts=4 sw=4:
+
+# multilingual char sets (utf-8)
+set encoding=utf-8 # in xterm, gvim etc.
+
+# set tab width and reformat {{{2
+:set tw=60<CR>
+gg
+gqG
+
+# Visual column width solutions {{{2
+# the match approach {{{3
+:match ErrorMsg '\%>80v.\+'
+
+# Removing blank lines {{{2
+:g/^$/d
+or
+:v/./d
+
+# Reversing all lines {{{2
+:g/^/m0
+
+# Format current paragraph (text width) {{{2
+gqap
+# Format visually selected code (text width) {{{2 
+gq
+
+# * Unix * {{{1 #
+# Binary data tools {{{2
+objdump - Dumps symbols of so files with -T
+bsdiff  - Creates patches for binary files
+hexdump - View the hex data of binary files
+mp4dump - Dump data and meta info for mp4 containers
+mp4info - View track data for mp4 container
+xxd -g <bytes> - hex dump of file 
+
+# Edit .mycshrc or .mybashrc to set startup commands {{{2
+# use alias to make commands shorter
+
+# To create a shell script use chmod 755 to make executable {{{2
+#!/bin/sh   
+
+# To create a perl script {{{2
+#!/usr/local/bin/perl
+
+# Use magic variable $RANDOM to generate random numbers {{{2
+# E.g. to generate within a range of 1-100
+num = $[($RANDOM % 100) + 1]
+
+# To set current directory as first place to look in cshell use {{{2
+set path = ( ./ $path)
+
+# To set current directory as first place in bash {{{2
+export PATH=".:$PATH"
+
+# To suspend a job to the background use {{{2
+Ctrl-z
+
+# To return a job to the foreground use {{{2
+fg
+
+# Redirect the stdin and stderr {{{2
+>&
+
+# Place process in the background {{{2
+&
+
+# file descriptors: stdin (0), stdout (1), stderr (2)
+# So 2>&1 instructs shell to send messages headed to stderr (2) to the 
+# same place messages to stdout (1) are sent.
+
+# To set overwrite for redirection use: {{{2
+set noclobber
+unset noclobber
+
+# screen provides multiple virtual terminals {{{2 
+# so you can easily run multiple programs at once.
+
+# screen provides multiple virtual terminals, so you can easily run multiple
+# programs at once.
+
+* ^ = Ctrl
+* ^A-?: Help for screen
+* ^A-C: Create new screen
+* ^A-A: Previous screen
+* ^A-N: Next screen
+* ^A-P: Previous screen
+* ^A-0: Select screen 0
+* ^A-1: Select screen 1
+* . ...
+* ^A-i: Info on current screen
+
+# Matlab (on starveling) {{{2
+M = dlmread('filename','delimiter'); to get data from file
+p = plot(x,y,x2,y2,x3,y3)
+xlabel('x')
+ylabel('y')
+title('title')
+legend('graph1','graph2','graph3')
+print -depsc p.eps to print to postscript image in current directory in color
+
+# Using tar {{{2
+c    Creates a new tape.
+f    Used for taring to a tape.
+t    Lists the contents of a tar file.
+v    Turns verbose on.
+x    Extracts selected files.  If no file
+     argument is given, the entire contents
+     of the tar file is extracted.
+
+    tar cvf filename.tar directoryname  <-- creates
+    tar xvf filename.tar directoryname  <-- reads
+    tar tf filename.tar                 <-- lists contents
+
+# GNU tar exclude syntax {{{3
+tar --exclude tmp -zcvf my.tar.gz *
+
+# sending files from server to server {{{2
+example: 
+    scp view1.bmp 03lafaye@fissure.utsc.utoronto.ca:view1.bmp
+    #places view1.bmp from current folder into home folder of fissure location
+
+# calendar {{{2
+cal
+
+# sed {{{2
+# s            Substitute command
+# /../../     Delimiter
+# water        regular expression
+# fire        replacement string
+# test      filename
+# -i        in place 
+
+example:
+    sed s/water/fire/g test
+    sed -i '0,/RE/s//to_that/' file # changes first occurrence of RE in file
+     # to replace revision numbers where $a is the new revision number
+    sed -i '0,/\(.*\$Revision$\)/s//\1'$a'\2/' $1 
+
+# find {{{2
+# .            where to look
+# -name     filename or directory
+example:
+    find . -name melrose
+
+# word count {{{2
+wc -l
+
+# awk {{{2
+ ll | awk '{print $6,$7,$8}' # gets last modification time 
+
+# execute multiple commands on command line {{{2
+echo Listing Directory; ls; echo End of Listing
+
+# mail (Send file's contents to recipient) {{{2
+mail -s "subject" addy@server.com < file.txt
+or 
+echo "Message" | mail -s "subject" addy@server.com
+# mutt mail {{{2
+echo "Message" | mutt -a path/to/file/attachment -s "subject" addr
+# mutt configuration (.muttrc) {{{2
+mailboxes imaps://imap.gmail.com:993
+set imap_user="pierre.lafayette@gmail.com" # IMAP user name
+set imap_pass="pwd" # IMAP password
+set sendmail="/usr/sbin/ssmtp" # smtp emailer
+set spoolfile="imaps://imap.gmail.com:993"
+set realname="Pierre LaFayette"
+set from="pierre.lafayette@gmail.com"
+set use_from="yes"
+set envelope_from="yes"
+
+# passing command line arguments to a function {{{2
+function m()
+{ 
+    my_script.sh "$@" ; .$HOME/.bashrc
+} # $1 is first argument, $* gives all args
+
+# to get exit status of last run program {{{2
+echo $?
+
+# to reload bashrc file {{{2
+. ~/.bashrc
+ 
+# Unix file permissions {{{2
+
+# change permissions of files only {{{3
+find . -type f -print | xargs chmod 664
+# change permissions of directories only {{{3
+find . -type d -print | xargs chmod 775
+
+# messaging {{{2
+
+# send broadcast message to all users (must be root) {{{3
+wall "msg"
+
+# private chat {{{3
+talk usr "msg"
+
+# php web server {{{2
+# edit httpd.conf to allow override by local htaccess files {{{3
+<Directory>
+    AllowOverride All
+</Directory>
+# httpd.conf may be in /opt/local/etc/httpd or /etc/httpd/ 
+# must restart server /etc/init.d/httpd stop /etc/init.d/httpd start
+
+# htaccess configuration php error reporting log {{{3
+php_flag  log_errors on
+php_value error_log  /path/to/PHP_errors.log
+
+# counting exceptions in log files {{{2
+
+#!/bin/bash
+
+for X in $(egrep "[A-Z]\w*Exception" $1 | sort | uniq) ;
+do
+    echo -n -e "processing $X\t" 
+    grep -c "$X" $1
+done
+
+# updating user password {{{2
+
+passwd
+ 
+# recursive search and replace with perl {{{2
+perl -p -i -e 's/oldstring/newstring/g' `find . -type f`
+
+# SHELL PROGRAMMING {{{2
+# for loop {{{3
+for i in `find . -type d`; do echo $i; done
+
+# file handling tests {{{3
+-r    True if file exists and is readable
+-w    True if file exists and is writable
+-x    True if file exists and is executable
+-f    True if file exists and is a regular file
+-d    True if file exists and is a directory
+-c    True if file exists and is a character special file
+-b    True if file exists and is a block special file
+-p    True if file exists and is a named pipe (FIFO)
+-u    True if file exists and is a SETUID file
+-g    True if file exists and is a SETGID file
+-k    True if file exists and the sticky bit is set
+-s    True if file exists and has a size greater than zero
+
+# list all the subdirectories of the current directory. {{{3
+
+for i in *
+do
+if [ -d $i ]
+then
+echo $i
+fi
+done
+
+# check file existance {{{3
+
+if [ ! -r $1 ]
+then
+echo File $1 does not exist or is not readable
+exit
+fi
+
+# string tests {{{3
+
+-ne    Not equal
+-eq    Equal
+-gt    Greater then
+-ge    Greater than or equal
+-le    Less than or equal
+-lt    Less than
+
+# Setting up ssmtp on Ubuntu {{{2
+
+# Install ssmtp {{{3
+sudo apt-get install ssmtp
+
+# Edit ssmtp.conf {{{3
+sudo vi /etc/ssmtp/ssmtp.conf
+
+# Edit contents to match SMTP provider
+root=plafayet@qualcomm.com                                                                      
+mailhub=qcmail1.qualcomm.com:587
+hostname=Dende
+AuthUser=plafayet
+AuthPass=pass
+UseSTARTTLS=YES
+FromLineOverride=YES
+
+# Edit revaliases.conf {{{3
+root:plafayet@qualcomm.com:qcmail1.qualcomm.com:587                                             
+plafayet:plafayet@qualcomm.com:qcmail1.qualcomm.com:587
+
+# * CVS * {{{1 #
+# to add an existing directory to cvs {{{2
+cd directory
+cvs import -m "Importing sources" project_name vendor_tag release_tag
+
+mv dir dir.orig
+cvs co dir
+rm -rf dir.orig
+
+# to get the files changed since a date:
+cvs rdiff -f -s -D [the date] [the module]
+
+# to get the files added since a date:
+cvs history -a -D [the date] -xA
+
+# * SVN * {{{1 #
+# to set property keywords for files {{{2
+svn propset svn:keywords "Rev Author Date" file1 file2 file3
+
+# to create a repository {{{2
+
+mkdir /home/pierre/svn/repos
+svnadmin create /home/pierre/svn/repos/
+
+# to move import a project {{{2
+
+svn import proj file:///home/pierre/svn/repos/proj
+mv proj proj_1
+svn co file:///home/pierre/svn/repos/proj
+
+# Logs for a date range {{{2
+svn log -r {YYYY-mm-dd}:{YYYY-mm-dd} path
+
+# * GIT * {{{1 #
+# initialize a new repository {{{2
+cd myproject; git init
+
+# setup a remote repository {{{2
+ssh myserver.com
+mkdir /var/git/myapp.git && cd /var/git/myapp.git
+git --bare init
+git --bare init --shared # for shared repository (has group write access)
+
+# add to a remote repository and push {{{2
+cd ~/myapp
+git remote add origin ssh://myserver.com/var/git/myapp.git
+git push origin master
+
+# specify remote branch {{{2
+in .git/config
+[branch "master"]
+    remote = origin
+    merge = refs/heads/master
+
+then simply push and pull 
+
+# project description {{{2
+must edit description locally and remotely .git/description and myapp.git/description
+
+# Daily Usage {{{2
+# Remove remote branch {{{3
+git push repository :branch
+
+# Stashing changes away {{{3
+// Do work that's uncommitted.
+git stash
+git checkout -b experimental-work
+git stash pop
+
+# Combine commits into one {{{3
+git rebase -i HEAD~2 # Use squash to combine the two commits.
+
+# Integrate changes from a remote repository {{{3
+git remote # View remote repositories.
+git fetch quic # Update to latest quic code.
+git remote add stewart-android-webkit git://stewartc-linux.qualcomm.com/webkit-quic.git
+git fetch stewart-android-webkit # Get changes from remote repository.
+git checkout -b wtr-integration stewart-android-webkit/eclair-wtr-stewartc # Create new branch tracking remote repository.
+git log --oneline -9 # review changes
+git diff 0108d66..f62dd2c > wtr.diff # Create diff file with changes to be applied to working branch.
+
+# For all work as a single commit {{{3
+git-merge --squash --no-commit t; git-commit 
+
+# Create a Git repository from an SVN repo {{{3
+git svn init http://rietveld.googlecode.com/svn/trunk/
+
+# Revert all uncommitted changes {{{3
+# Will not remove untracked files. 
+git reset --hard
+
+# Revert previous commits {{{3
+# Last commit
+git reset --soft HEAD^
+# Second last commit
+git reset --soft HEAD~2
+
+# Rollback/revert a file to a previous revision {{{3
+git checkout $COMMIT_HASH file
+
+# Delete untracked files {{{3
+git clean -f
+
+# Revert local repository to HEAD {{{3
+git checkout -b newbranch origin/HEAD
+git branch -D prevbranch
+
+# View remote branch information {{{3
+git branch -r
+
+# Commit a subset of modified files (staging) {{{3
+git commit --interactive
+
+# Create a patch to send to mailing list {{{3
+# The -M flag tells Git to look for renames
+git format-patch -M origin/master
+ 
+# * SSH * {{{1 #
+# no password ssh hack! {{{2
+1. On the client
+     ssh-keygen -t rsa
+     ssh server "mkdir .ssh; chmod 0700 .ssh"
+     scp .ssh/id_rsa.pub server:.ssh/authorized_keys2
+
+# * MySQL * {{{1 #
+# Vertical output {{{2
+mysql> select * from table \G
+
+# View configuration variables {{{2
+mysql> show variables \G
+
+# View process list {{{2
+mysql> show processlist \G
+
+    Id: 17 (thread id; unrelated to pid)
+    User: jzawodn
+    Host: localhost
+    db: NULL
+    Command: Query
+    Time: 0
+    State: NULL
+    Info: show processlist
+
+# Update time only in datetime fields {{{2
+update date set date = date + INTERVAL 1 HOUR where condition
+
+
+# * Modeline * {{{1 #
+# vi:set fdm=marker: 

@@ -1,0 +1,13 @@
+# Mercurial configuration file
+[extensions]
+hgext.convert=
+hgext.color=
+hgext.mq=
+[ui]
+username = Pierre-Antoine LaFayette <pierre.lafayette@gmail.com>
+[merge-tools]
+filemerge.executable = vim
+filemerge.args = -d $local $other
+filemerge.checkchanged = true
+filemerge.gui = true
+merge = vim -d

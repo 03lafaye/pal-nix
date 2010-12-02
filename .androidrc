@@ -1,0 +1,93 @@
+# Android environment variables # {{{1
+export ANDROID_HOME="/media/C18/quic"
+export ANDROID_IMG_SRC_DIR="$HOME/png_images"
+export ANDROID_IMG_OUT_DIR="$HOME/png_images/out"
+export ANDROID_BUILD_TOP=$ANDROID_HOME
+export ANDROID_TOOLCHAIN="$ANDROID_HOME/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin"
+export ANDROID_SDK_TOOLS="$HOME/android-sdk-linux-2.0/tools"
+export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/msm7630_surf"
+export ANDROID_SWT="$ANDROID_HOME/out/host/linux-x86/framework"
+#export USE_CCACHE=1
+export CSCOPE_DB="$ANDROID_HOME/cscope"
+
+# Add tools and toolchain to path
+export PATH="$PATH:$ANDROID_HOME/out/host/linux-x86/bin"
+export PATH="$PATH:$ANDROID_TOOLCHAIN"
+export PATH=`path.sh`
+
+# Android utility functions # {{{1
+
+function android_kill_process {
+    process=`adb shell ps | grep $1 | awk '{print $2}' | sed -e 's/  *$//'`
+
+    if [ -n "$process" ]; then
+        echo "Killing $1 process id $process"
+        adb shell kill $process
+    fi
+}
+
+function android_cpu_freq {
+    adb shell cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
+}
+
+function android_cpu_scaling {
+    adb shell cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+}
+
+function android_disable_cpu_scaling {
+    adb shell "echo performance > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
+}
+
+function android_swap_interval {
+    adb shell stop
+    adb shell setprop debug.gr.swapinterval 0
+    adb shell start
+}
+
+function android_product_out {
+    export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/msm7630_surf"
+    echo $ANDROID_PRODUCT_OUT
+}
+
+function android_mount_debug_fs {
+    adb shell "mkdir /system/debug; mount -t debugfs none /system/debug"
+}
+
+function android_vg_clock_speed {
+    adb shell "cat /system/debug/clk/grp_2d_clk/measure"
+}
+
+function android_remount {
+    adb shell mount -o rw,remount -t yaffs2 /dev/block/mtdblock3 /system
+}
+
+function android_viewer {
+    adb shell am start -a android.intent.action.VIEW -n \
+    com.android.htmlviewer/.HTMLViewerActivity -d "file:///data/$1" &
+}
+
+function android_browser_net {
+    adb shell am start -a android.intent.action.VIEW -n \
+    com.android.browser/.BrowserActivity -d "http://$1" &
+}
+
+function android_browser_local {
+    adb shell am start -a android.intent.action.VIEW -n \
+    com.android.browser/.BrowserActivity -d "file:///data/$1" &
+}
+
+function android_push_lib {
+    adb shell stop
+    adb push $ANDROID_PRODUCT_OUT/system/lib/lib$1.so /system/lib
+    adb shell start
+}
+
+function android_push_bin {
+    adb push $ANDROID_PRODUCT_OUT/system/bin/$1 /system/bin
+}
+
+alias logtime="adb logcat WebCore:* *:S"
+alias logvg="adb logcat webcore:* webcore_test:* webcoreglue:* graphicscontextopenvg:* graphicscontextandroid:* painteropenvg:* surfaceopenvg:* frameview:* renderobject:* skia:* DEBUG:* WebCore:* *:S"
+alias clc="adb logcat -c"
+
+# vi:set ft=sh fdm=marker sw=4 ts=4:

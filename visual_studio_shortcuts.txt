@@ -1,0 +1,33 @@
+Find all references {{{1
+Ctrl+G,R
+
+Find in Path {{{1
+Ctrl+Shift+F
+
+Go to header file {{{1
+Ctrl+G,H
+
+Go to declaration {{{1
+Ctrl+Alt+<F12>
+
+Go to definition {{{1
+<F12>
+
+Go back {{{1
+Ctrl+-
+
+Comment Selection {{{1
+Ctrl+K, Ctrl+C
+
+Uncomment Selection {{{1
+Ctrl+K, Ctrl+U
+
+Breakpoints {{{1
+Alt+<F9>
+Debug {{{1
+Step Over {{{2
+<F10>
+Run to cursor {{{2
+Ctrl+<F10>
+Modeline {{{1
+vim:set ft=help tw=76:

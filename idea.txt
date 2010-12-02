@@ -1,0 +1,88 @@
+# idea.txt - IntelliJ Idea knowledge base
+#
+# $Author$
+# $Date$
+# $Revision$   
+
+# Key shortcuts {{{1
+
+# Navigation {{{2
+
+# Go to class {{{3
+<C-N>
+
+# Go to non-java file {{{3
+<C-S-N>
+
+# Go to recent files {{{3
+<C-e>
+
+# Go to recent changes {{{3
+<A-S-c>
+
+# Go to declaration {{{3
+<C-B>
+
+# Go to next/previous method
+<A-Down> && <A-Up>
+
+# Code completion {{{2
+
+# General completion {{{3
+<C-Space>
+
+# Smart completion {{{3
+<C-S-Space>
+
+# Complete statement {{{3
+<C-S-E>
+
+# Reformat Code {{{2
+<C-A-L>
+
+# Find Usages {{{2
+<A-F7>
+
+# View Javadoc {{{2
+<C-Q>
+
+# Introduce Variable {{{2
+<C-A-V>
+
+# View package {{{2
+<C-Mouseover>
+
+# Execute Statement {{{2
+<A-F8>
+
+# Run {{{2
+
+# Run {{{3
+<C-F10>
+
+# Run Context Build {{{3 
+<C-S-F10>
+
+# Hide footer command section {{{2
+<S-Esc>
+
+# Pierre's Idea Key mappings {{{2
+
+# Subversion {{{3
+
+# History {{{4
+<C-A-1> # view history for file
+<C-S-A-1> # view history for selection
+<C-A-2> # update file
+<C-A-3> # revert
+<C-A-4> # commit changes
+<C-A-6> # compare with lastest version
+
+# Team City Build {{{3
+<C-A-5> # remote build
+
+# Debug
+<C-S-F11> # debug context build
+
+# Modeline {{{1
+# vim:set fdm=marker:

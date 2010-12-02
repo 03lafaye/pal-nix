@@ -1,0 +1,13 @@
+[color]
+	ui = auto
+[user]
+	name = Pierre LaFayette
+	email = plafayet@qualcomm.com
+[alias]
+  ci = commit -a
+  co = checkout
+  st = status
+  br = branch
+  ap = apply
+[core]
+	excludesfile = /home/plafayet/.gitignore

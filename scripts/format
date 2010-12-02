@@ -1,0 +1,86 @@
+#! /usr/bin/perl -w 
+
+# Damian Conway's script for formatting text in Vim.
+# Add the following mappings to your vimrc:
+# "Format file with autoformat (capitalize to specify options)
+# nmap          F !Gformat -T4 -
+# nmap <silent> f !Gformat -T4<CR>
+# vmap          F :!format -T4 -all -
+# vmap <silent> f :!format -T4 -all<CR>
+
+use Getopt::Declare;
+use Text::Autoformat qw{ autoformat };
+use vars qw{ %args };
+
+new Getopt::Declare q{
+[strict]
+	-a		Process entire input (not just 1st para)
+				{ $::args{all} = 1 }
+
+	-m		Process entire input as a mail file
+			(i.e. ignore headers and sigs)
+				{ $::args{mail} = 1 }
+
+	+<L:+i>		Set left margin to column <L>
+				{ $::args{left} = $L }
+	-<R:+i>		Set right margin to column <R>
+				{ $::args{right} = $R }
+
+	-c		Centre input (implies -n)
+				{ $::args{justify} = "centre";
+				  $::args{fill} = 0;
+				}
+
+	-C		Centre and fill input 
+				{ $::args{justify} = "centre" }
+
+	-ii 		Ignore indented
+				{ $::args{ignore} = 'indent' }
+
+	-i <pat>	Ignore
+				{ $::args{ignore} = qr/$pat/ }
+
+	-tu		Translate all words to all upper case
+				{ $::args{case} = 'upper' }
+	-tl		Translate all words to all lower case
+				{ $::args{case} = 'lower' }
+	-tt		Translate all words to title case
+				{ $::args{case} = 'title' }
+	-th		Translate all meaningful words to title case
+				{ $::args{case} = 'highlight' }
+
+	-j <type>	Justification ("full", "left", "right", "centre")
+				{ $::args{justify} = $type }
+
+	-n		No filling (i.e. preserve existing line breaks)
+				{ $::args{fill} = 0 }
+
+	-r		No renumbering of numbered lists
+				{ $::args{renumber} = 0 }
+
+    -l <l>		Specify what kinds of lists are recognized
+				{ $::args{lists} = $l }
+
+	-T <w:+i>	Tab spacing (defaults to 8)
+				{ $::args{tabspace} = $w }
+
+	<infile:if>	Input file
+				{ $::infile = $infile }
+	<outfile:of>	Output file
+				{ reject ! $_FOUND_{'<infile>'} }
+				{ $::outfile = $outfile }
+
+} or exit(1);
+
+if ($::infile) { open IN,$::infile
+			or die "Can't open input file: $::infile\n" }
+else	       { open IN, '-' }
+
+if ($::outfile) { open OUT,">$::outfile"
+			or die "Can't open output file: $::outfile\n" }
+else	        { open OUT, '>-' }
+
+my $text = do { local $/; <IN> };
+$text =~ s/\r\n?/\n/g;
+
+print OUT autoformat $text, \%args;
