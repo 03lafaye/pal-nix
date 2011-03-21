@@ -1,11 +1,11 @@
 # Android environment variables # {{{1
-export ANDROID_HOME="/media/C18/quic"
+export ANDROID_HOME="$HOME/yyzubuntumdf1/quic-gingerbread-stock-3"
 export ANDROID_IMG_SRC_DIR="$HOME/png_images"
 export ANDROID_IMG_OUT_DIR="$HOME/png_images/out"
 export ANDROID_BUILD_TOP=$ANDROID_HOME
 export ANDROID_TOOLCHAIN="$ANDROID_HOME/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin"
 export ANDROID_SDK_TOOLS="$HOME/android-sdk-linux-2.0/tools"
-export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/msm7630_surf"
+export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/msm8660_surf"
 export ANDROID_SWT="$ANDROID_HOME/out/host/linux-x86/framework"
 #export USE_CCACHE=1
 export CSCOPE_DB="$ANDROID_HOME/cscope"
@@ -66,6 +66,11 @@ function android_viewer {
     com.android.htmlviewer/.HTMLViewerActivity -d "file:///data/$1" &
 }
 
+function android_browser {
+    adb shell am start -a android.intent.action.VIEW -n \
+    com.android.browser/.BrowserActivity -d "$1" &
+}
+
 function android_browser_net {
     adb shell am start -a android.intent.action.VIEW -n \
     com.android.browser/.BrowserActivity -d "http://$1" &
@@ -84,6 +89,20 @@ function android_push_lib {
 
 function android_push_bin {
     adb push $ANDROID_PRODUCT_OUT/system/bin/$1 /system/bin
+}
+
+function android_flash_all_in {
+    sudo fastboot flash userdata $1/userdata.img.ext4
+    sudo fastboot flash system $1/system.img.ext4
+    sudo fastboot flash persist $1/persist.img.ext4
+    sudo fastboot boot $1/boot.img
+}
+
+function android_flash_all {
+    sudo fastboot flash userdata $ANDROID_PRODUCT_OUT/userdata.img.ext4
+    sudo fastboot flash system $ANDROID_PRODUCT_OUT/system.img.ext4
+    sudo fastboot flash persist $ANDROID_PRODUCT_OUT/persist.img.ext4
+    sudo fastboot boot $ANDROID_PRODUCT_OUT/boot.img
 }
 
 alias logtime="adb logcat WebCore:* *:S"
