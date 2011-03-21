@@ -169,10 +169,10 @@ map <silent> T$ :call NewTabSpacing(4)<CR>
 
 " Format file with autoformat  (credit to Damian Conway) {{{2
 " Capitalize to specify options
-nmap          F !Gformat -T4 -
-nmap <silent> f !Gformat -T4<CR>
-vmap          F :!format -T4 -all -
-vmap <silent> f :!format -T4 -all<CR>
+"nmap          F !Gformat -T4 -
+"nmap <silent> f !Gformat -T4<CR>
+"vmap          F :!format -T4 -all -
+"vmap <silent> f :!format -T4 -all<CR>
 
 " Remove trailing spaces {{{2
 nmap <silent> RS :%s/ \+$//g<CR>
