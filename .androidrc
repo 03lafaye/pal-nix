@@ -1,5 +1,5 @@
 # Android environment variables # {{{1
-export ANDROID_HOME="$HOME/yyzubuntumdf1/quic-gingerbread-stock-3"
+export ANDROID_HOME="$HOME/yyzubuntumdf1/quic-gingerbread-stock-240311"
 export ANDROID_IMG_SRC_DIR="$HOME/png_images"
 export ANDROID_IMG_OUT_DIR="$HOME/png_images/out"
 export ANDROID_BUILD_TOP=$ANDROID_HOME
@@ -82,12 +82,14 @@ function android_browser_local {
 }
 
 function android_push_lib {
+    android_remount
     adb shell stop
     adb push $ANDROID_PRODUCT_OUT/system/lib/lib$1.so /system/lib
     adb shell start
 }
 
 function android_push_bin {
+    android_remount
     adb push $ANDROID_PRODUCT_OUT/system/bin/$1 /system/bin
 }
 
@@ -103,6 +105,29 @@ function android_flash_all {
     sudo fastboot flash system $ANDROID_PRODUCT_OUT/system.img.ext4
     sudo fastboot flash persist $ANDROID_PRODUCT_OUT/persist.img.ext4
     sudo fastboot boot $ANDROID_PRODUCT_OUT/boot.img
+}
+
+function android_flash_modem_in {
+    sudo fastboot flash sbl1 $1/sbl1.mbn
+    sudo fastboot flash sbl2 $1/sbl2.mbn
+    sudo fastboot flash sbl3 $1/sbl3.mbn
+    sudo fastboot flash rpm $1/rpm.mbn
+    sudo fastboot flash tz $1/tz.mbn
+    sudo fastboot flash modem $1/NON-HLOS.bin
+    sudo fastboot flash aboot $1/emmc_appsboot.mbn
+}
+
+function android_debug_browser {
+    pd $ANDROID_HOME
+    gdbclient app_process :5039 com.android.browser
+}
+
+function android_boot {
+    sudo fastboot boot $ANDROID_PRODUCT_OUT/boot.img
+}
+
+function android_boot_in {
+    sudo fastboot boot $1/boot.img
 }
 
 alias logtime="adb logcat WebCore:* *:S"
