@@ -130,6 +130,32 @@ function android_boot_in {
     sudo fastboot boot $1/boot.img
 }
 
+function android_media_volume {
+    database='cd /data/data/com.android.providers.settings/databases;'
+    adjust_volume="insert into system(name, value) values ('volume_music', $1);"
+    adb shell $database sqlite3 settings.db \"$adjust_volume\"
+}
+
+function android_display_timeout_off {
+    database='cd /data/data/com.android.providers.settings/databases;'
+    screen_off="insert into system(name, value) values ('screen_off_timeout', -1);"
+    dim_screen="insert into system(name, value) values ('dim_screen', 1);"
+    stay_on="insert into system(name, value) values ('stay_on_while_plugged_in', 3);"
+    adb shell $database sqlite3 settings.db \"$screen_off $dim_screen $stay_on\"
+}
+
+function android_init_volume_display_low {
+    adb shell stop
+    android_media_volume 4
+    android_display_timeout_off
+    adb shell start
+}
+
+function android_reset {
+    adb shell stop
+    adb shell start
+}
+
 alias logtime="adb logcat WebCore:* *:S"
 alias logvg="adb logcat webcore:* webcore_test:* webcoreglue:* graphicscontextopenvg:* graphicscontextandroid:* painteropenvg:* surfaceopenvg:* frameview:* renderobject:* skia:* DEBUG:* WebCore:* *:S"
 alias clc="adb logcat -c"
