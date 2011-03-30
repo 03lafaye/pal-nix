@@ -1,12 +1,12 @@
-# unixtricks - seemingly useful unix knowledge 
+# unixtricks - seemingly useful unix knowledge
 #
 # $Author$
 # $Date$
-# $Revision$   
+# $Revision$
 
 # * Vi * {{{1 #
 # Center text {{{2
-:(range)ce (width) 
+:(range)ce (width)
 
 # Switch to super user from within vim {{{2
 :w !sudo tee %
@@ -16,7 +16,7 @@
 :mksession
 # to load session {{{3
 vi -S Session.vim
-# Date and Time insert (in insert mode) {{{2 
+# Date and Time insert (in insert mode) {{{2
 <C-r>=strftime("%Y-%m-%d")<CR>
 
 # To get syntax coloring on vim: {{{2
@@ -47,13 +47,13 @@ vi file1 file2 file3
 
 # Windowing {{{2
 :sp            - split-frame window
-:sp file    - new split-frame window opening file 
+:sp file    - new split-frame window opening file
 :vsp         - vertical split frame window
 Ctrl-W x 2     - goto next window
 
 # Search and Replace {{{2
 
-# non-greedy quantifiers {{{3 
+# non-greedy quantifiers {{{3
 # matches 0 or more of the preceding atom, as few as possible {{{4
 \{-}
 # matches 1 or more of the preceding characters... {{{4
@@ -64,7 +64,7 @@ Ctrl-W x 2     - goto next window
 \{-,m}
 
 # search for occurrences of word under cursor {{{3
-*            
+*
 
 # find pattern srch {{{3
 /srch
@@ -118,14 +118,14 @@ N
 yy      - yank line
 nyy     - yank n lines
 y$      - yank from cursor to end of line
-J       - yank last line to current line 
+J       - yank last line to current line
 "ay     - yank selection into register 'a'
 
 # Paste {{{2
 P          - paste after cursor
 p          - paste before cursor
 "ap        - paste contents of register 'a'
-:set paste - allows insert of pasted litteral text 
+:set paste - allows insert of pasted litteral text
 
 # Replace {{{2
 r(char) - replace current char with given char
@@ -142,7 +142,7 @@ d)        - delete remainder of sentence
 u                      - undo last change
 Ctrl-R                 - redo last change
 g-                     - move back in time through different undo branches
-g+                     - move forward in time through different undo branches 
+g+                     - move forward in time through different undo branches
 :earlier <time_offset> - move back in time e.g. :earlier 10m
 :later <time_offset>   - move forward in time e.g. :later 30s
 
@@ -176,7 +176,7 @@ e/E       - end of next word / bigword
 }         - next blank line
 *         - next instance of current word
 '#'       - previous instance of current word
-"         - location where last search started 
+"         - location where last search started
 fC        - go to next occurance of C
 <n>->     - n chars to right
 <n><-     - n chars to left
@@ -255,7 +255,7 @@ Ctrl-V
 :!!            # execute last external command (Bang! Bang!)
 
 # Sorting {{{2
-# Mark a block of text at top line and bottom line of block 
+# Mark a block of text at top line and bottom line of block
 # i.e. mt and mb on two separate lines
 :'t,'b !sort
 # Alternatively can use to sort 3 lines from the cursor
@@ -274,10 +274,10 @@ Ctrl-V
 set dictionary=~/.ispell_british,/usr/share/dict/words
 set complete=.,w,k
 # Filetype dictionary completion {{{3
-<C-x><C-o>                         
+<C-x><C-o>
 # dictionary lookup {{{3
 <C-x><C-k>
- 
+
 # see spell suggestions for misspelled words {{{2
 z=
 
@@ -304,7 +304,7 @@ gg
 Ctrl-]      # go to tag
 Ctrl-t      # pop off from tag stack
 tnext       # if more than one match go to next
-tprevious   # go back 
+tprevious   # go back
 
 # helptags {{{2
 name file blah.txt
@@ -336,7 +336,7 @@ zE            # deletes all folds.
 [z            # move to start of open fold.
 ]z            # move to end of open fold.
 
-# modeline - when set first and last 5 lines are checked for editing cmds {{{2 
+# modeline - when set first and last 5 lines are checked for editing cmds {{{2
 <sp> vi:set options|map ...|ab ...|!...:
 vi:set ts=4 sts=4 sw=4:
 
@@ -362,7 +362,7 @@ or
 
 # Format current paragraph (text width) {{{2
 gqap
-# Format visually selected code (text width) {{{2 
+# Format visually selected code (text width) {{{2
 gq
 
 # * Unix * {{{1 #
@@ -372,13 +372,13 @@ bsdiff  - Creates patches for binary files
 hexdump - View the hex data of binary files
 mp4dump - Dump data and meta info for mp4 containers
 mp4info - View track data for mp4 container
-xxd -g <bytes> - hex dump of file 
+xxd -g <bytes> - hex dump of file
 
 # Edit .mycshrc or .mybashrc to set startup commands {{{2
 # use alias to make commands shorter
 
 # To create a shell script use chmod 755 to make executable {{{2
-#!/bin/sh   
+#!/bin/sh
 
 # To create a perl script {{{2
 #!/usr/local/bin/perl
@@ -406,14 +406,14 @@ fg
 &
 
 # file descriptors: stdin (0), stdout (1), stderr (2)
-# So 2>&1 instructs shell to send messages headed to stderr (2) to the 
+# So 2>&1 instructs shell to send messages headed to stderr (2) to the
 # same place messages to stdout (1) are sent.
 
 # To set overwrite for redirection use: {{{2
 set noclobber
 unset noclobber
 
-# screen provides multiple virtual terminals {{{2 
+# screen provides multiple virtual terminals {{{2
 # so you can easily run multiple programs at once.
 
 # screen provides multiple virtual terminals, so you can easily run multiple
@@ -456,7 +456,7 @@ x    Extracts selected files.  If no file
 tar --exclude tmp -zcvf my.tar.gz *
 
 # sending files from server to server {{{2
-example: 
+example:
     scp view1.bmp 03lafaye@fissure.utsc.utoronto.ca:view1.bmp
     #places view1.bmp from current folder into home folder of fissure location
 
@@ -469,13 +469,13 @@ cal
 # water        regular expression
 # fire        replacement string
 # test      filename
-# -i        in place 
+# -i        in place
 
 example:
     sed s/water/fire/g test
     sed -i '0,/RE/s//to_that/' file # changes first occurrence of RE in file
      # to replace revision numbers where $a is the new revision number
-    sed -i '0,/\(.*\$Revision$\)/s//\1'$a'\2/' $1 
+    sed -i '0,/\(.*\$Revision$\)/s//\1'$a'\2/' $1
 
 # find {{{2
 # .            where to look
@@ -487,14 +487,14 @@ example:
 wc -l
 
 # awk {{{2
- ll | awk '{print $6,$7,$8}' # gets last modification time 
+ ll | awk '{print $6,$7,$8}' # gets last modification time
 
 # execute multiple commands on command line {{{2
 echo Listing Directory; ls; echo End of Listing
 
 # mail (Send file's contents to recipient) {{{2
 mail -s "subject" addy@server.com < file.txt
-or 
+or
 echo "Message" | mail -s "subject" addy@server.com
 # mutt mail {{{2
 echo "Message" | mutt -a path/to/file/attachment -s "subject" addr
@@ -511,7 +511,7 @@ set envelope_from="yes"
 
 # passing command line arguments to a function {{{2
 function m()
-{ 
+{
     my_script.sh "$@" ; .$HOME/.bashrc
 } # $1 is first argument, $* gives all args
 
@@ -520,7 +520,7 @@ echo $?
 
 # to reload bashrc file {{{2
 . ~/.bashrc
- 
+
 # Unix file permissions {{{2
 
 # change permissions of files only {{{3
@@ -541,7 +541,7 @@ talk usr "msg"
 <Directory>
     AllowOverride All
 </Directory>
-# httpd.conf may be in /opt/local/etc/httpd or /etc/httpd/ 
+# httpd.conf may be in /opt/local/etc/httpd or /etc/httpd/
 # must restart server /etc/init.d/httpd stop /etc/init.d/httpd start
 
 # htaccess configuration php error reporting log {{{3
@@ -554,14 +554,14 @@ php_value error_log  /path/to/PHP_errors.log
 
 for X in $(egrep "[A-Z]\w*Exception" $1 | sort | uniq) ;
 do
-    echo -n -e "processing $X\t" 
+    echo -n -e "processing $X\t"
     grep -c "$X" $1
 done
 
 # updating user password {{{2
 
 passwd
- 
+
 # recursive search and replace with perl {{{2
 perl -p -i -e 's/oldstring/newstring/g' `find . -type f`
 
@@ -619,7 +619,7 @@ sudo apt-get install ssmtp
 sudo vi /etc/ssmtp/ssmtp.conf
 
 # Edit contents to match SMTP provider
-root=plafayet@qualcomm.com                                                                      
+root=plafayet@qualcomm.com
 mailhub=qcmail1.qualcomm.com:587
 hostname=Dende
 AuthUser=plafayet
@@ -628,7 +628,7 @@ UseSTARTTLS=YES
 FromLineOverride=YES
 
 # Edit revaliases.conf {{{3
-root:plafayet@qualcomm.com:qcmail1.qualcomm.com:587                                             
+root:plafayet@qualcomm.com:qcmail1.qualcomm.com:587
 plafayet:plafayet@qualcomm.com:qcmail1.qualcomm.com:587
 
 # * CVS * {{{1 #
@@ -685,7 +685,7 @@ in .git/config
     remote = origin
     merge = refs/heads/master
 
-then simply push and pull 
+then simply push and pull
 
 # project description {{{2
 must edit description locally and remotely .git/description and myapp.git/description
@@ -713,13 +713,13 @@ git log --oneline -9 # review changes
 git diff 0108d66..f62dd2c > wtr.diff # Create diff file with changes to be applied to working branch.
 
 # For all work as a single commit {{{3
-git-merge --squash --no-commit t; git-commit 
+git-merge --squash --no-commit t; git-commit
 
 # Create a Git repository from an SVN repo {{{3
 git svn init http://rietveld.googlecode.com/svn/trunk/
 
 # Revert all uncommitted changes {{{3
-# Will not remove untracked files. 
+# Will not remove untracked files.
 git reset --hard
 
 # Revert previous commits {{{3
@@ -747,7 +747,7 @@ git commit --interactive
 # Create a patch to send to mailing list {{{3
 # The -M flag tells Git to look for renames
 git format-patch -M origin/master
- 
+
 # * SSH * {{{1 #
 # no password ssh hack! {{{2
 1. On the client
@@ -777,6 +777,18 @@ mysql> show processlist \G
 # Update time only in datetime fields {{{2
 update date set date = date + INTERVAL 1 HOUR where condition
 
+# * GDB * {{{1 #
+# Daily usage {{{2
+directory $PATH # Add source directory path
+br namespace::class::method # Setting breakpoints by method
+br fileName.cpp:129  # Setting breakpoints by file
+del br # delete all breakpoints
+disable n # disable the nth breakpoint
+enable n # enable nth breakpoint
+cont n # continue till nth time breakpoint is hit
+info br # show breakpoints
+where # show stack trace
+wh # opens a split source window that shows the current position
 
 # * Modeline * {{{1 #
-# vi:set fdm=marker: 
+# vi:set fdm=marker:
