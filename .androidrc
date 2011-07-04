@@ -1,5 +1,5 @@
 # Android environment variables # {{{1
-export ANDROID_HOME="$HOME/yyzubuntumdf1/quic-gingerbread-stock-240311"
+export ANDROID_HOME="$HOME/yyzubuntumdf1/quic-honeycomb-mr1-270411"
 export ANDROID_IMG_SRC_DIR="$HOME/png_images"
 export ANDROID_IMG_OUT_DIR="$HOME/png_images/out"
 export ANDROID_BUILD_TOP=$ANDROID_HOME
@@ -93,6 +93,14 @@ function android_push_bin {
     adb push $ANDROID_PRODUCT_OUT/system/bin/$1 /system/bin
 }
 
+function android_flash_system_in {
+    sudo fastboot flash system $1/system.img.ext4
+}
+
+function android_flash_system {
+    sudo fastboot flash system $ANDROID_PRODUCT_OUT/system.img.ext4
+}
+
 function android_flash_all_in {
     sudo fastboot flash userdata $1/userdata.img.ext4
     sudo fastboot flash system $1/system.img.ext4
@@ -119,7 +127,12 @@ function android_flash_modem_in {
 
 function android_debug_browser {
     pd $ANDROID_HOME
-    gdbclient app_process :5039 com.android.browser
+    gdbclient -g gdb-7.1-arm -p :5039 -e app_process -a com.android.browser
+}
+
+function android_debug_port_browser {
+    pd $ANDROID_HOME
+    gdbclient -g gdb-7.1-arm -p :$1 -e app_process -a com.android.browser
 }
 
 function android_boot {
@@ -128,6 +141,10 @@ function android_boot {
 
 function android_boot_in {
     sudo fastboot boot $1/boot.img
+}
+
+function android_crash_backtrace {
+    stack --symbols-dir=$ANDROID_PRODUCT_OUT/symbols $1
 }
 
 function android_media_volume {
@@ -154,6 +171,19 @@ function android_init_volume_display_low {
 function android_reset {
     adb shell stop
     adb shell start
+}
+
+function android_browser_plafayet {
+    android_browser_net plafayet-linux.qualcomm.com
+}
+
+function android_ethernet_up {
+    adb shell netcfg eth0 up
+    adb shell netcfg eth0 dhcp
+    adb shell route add default gw `adb shell getprop net.eth0.gw` dev eth0
+    adb shell netcfg
+    adb shell setprop net.dns1 129.46.50.7
+    adb shell setprop net.dns2 129.46.55.20
 }
 
 alias logtime="adb logcat WebCore:* *:S"

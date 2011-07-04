@@ -5,6 +5,9 @@
 # $Revision$
 
 # * Vi * {{{1 #
+# Write with sudo trick {{{2
+:w !sudo tee % # Allows a file that hasn't been opened with sudo to be saved.
+
 # Center text {{{2
 :(range)ce (width)
 

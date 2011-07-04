@@ -1,4 +1,4 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='C:/cygwin/home/plafayet/pal-nix/.vim'
-let g:netrw_dirhist_2='C:/cygwin/home/plafayet/pal-nix/.vim/plugin'
+let g:netrw_dirhist_1='/local/mnt/workspace/plafayet/yyzubuntumdf1/quic-honeycomb-stock-300311/device/qcom/msm8660_surf'
+let g:netrw_dirhist_2='/local/mnt/workspace/plafayet/yyzubuntumdf1/quic-honeycomb-stock-290411/external/webkit/WebCore/platform/graphics/android'
