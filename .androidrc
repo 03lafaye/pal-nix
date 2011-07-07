@@ -63,7 +63,7 @@ function android_remount {
 
 function android_viewer {
     adb shell am start -a android.intent.action.VIEW -n \
-    com.android.htmlviewer/.HTMLViewerActivity -d "file:///data/$1" &
+    com.android.htmlviewer/.HTMLViewerActivity -d "$1" &
 }
 
 function android_browser {
