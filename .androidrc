@@ -1,18 +1,19 @@
 # Android environment variables # {{{1
-export ANDROID_HOME="$HOME/yyzubuntumdf1/quic-honeycomb-mr2-19072011"
+export ANDROID_HOME="$HOME/yyzubuntumdf1/honeycomb-mr2-130911"
 export ANDROID_TARGET="msm8660_surf"
 export ANDROID_IMG_SRC_DIR="$HOME/png_images"
 export ANDROID_IMG_OUT_DIR="$HOME/png_images/out"
 export ANDROID_BUILD_TOP=$ANDROID_HOME
 export ANDROID_TOOLCHAIN="$ANDROID_HOME/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin"
-export ANDROID_SDK_TOOLS="$HOME/android-sdk-linux-2.0/tools"
-export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/$ANDROID_TARGET"
+export ANDROID_SDK_PLATFORM_TOOLS="$HOME/android-sdk-r12-linux_x86/android-sdk-linux_x86/platform-tools"
+export ANDROID_SDK_TOOLS="$HOME/android-sdk-r12-linux_x86/android-sdk-linux_x86/tools"
+export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/debug/target/product/$ANDROID_TARGET"
 export ANDROID_SWT="$ANDROID_HOME/out/host/linux-x86/framework"
 #export USE_CCACHE=1
 export CSCOPE_DB="$ANDROID_HOME/cscope"
 
 # Add tools and toolchain to path
-export PATH="$PATH:$ANDROID_HOME/out/host/linux-x86/bin"
+export PATH="$ANDROID_SDK_PLATFORM_TOOLS::$PATH:$ANDROID_SDK_TOOLS"
 export PATH="$PATH:$ANDROID_TOOLCHAIN"
 export PATH=`path.sh`
 
@@ -191,6 +192,11 @@ function android_setup_environment {
     pd $ANDROID_HOME
     . build/envsetup.sh
     choosecombo 1 1 $ANDROID_TARGET eng
+}
+
+# Unlock the lock screen.
+function android_unlock {
+    adb shell input keyevent 82
 }
 
 alias logtime="adb logcat WebCore:* *:S"
