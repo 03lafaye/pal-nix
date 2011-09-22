@@ -199,14 +199,14 @@ function android_unlock {
     adb shell input keyevent 82
 }
 
-function reinstall_browser {
+function android_reinstall_browser {
     android_remount
     adb rm /system/app/Browser
     adb uninstall com.android.browser
     adb install $ANDROID_PRODUCT_OUT/system/app/Browser.apk
 }
 
-function reinstall_framework {
+function android_reinstall_framework {
     android_remount
     adb shell stop
     adb push $ANDROID_PRODUCT_OUT/system/framework/framework.jar /system/framework
