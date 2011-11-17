@@ -1,19 +1,21 @@
 # Android environment variables # {{{1
-export ANDROID_HOME="$HOME/yyzubuntumdf1/cyanogen-gingerbread"
-export ANDROID_TARGET="passion"
-export ANDROID_IMG_SRC_DIR="$HOME/png_images"
-export ANDROID_IMG_OUT_DIR="$HOME/png_images/out"
+export HOME2="/local/mnt/workspace/plafayet"
+export ANDROID_HOME="$HOME2/yyzubuntumdf1/quic-ics"
+export ANDROID_TARGET="msm8660_surf"
+export ANDROID_IMG_SRC_DIR="$HOME2/png_images"
+export ANDROID_IMG_OUT_DIR="$HOME2/png_images/out"
 export ANDROID_BUILD_TOP=$ANDROID_HOME
-export ANDROID_TOOLCHAIN="$ANDROID_HOME/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin"
-export ANDROID_SDK_PLATFORM_TOOLS="$HOME/android-sdk-r12-linux_x86/android-sdk-linux_x86/platform-tools"
-export ANDROID_SDK_TOOLS="$HOME/android-sdk-r12-linux_x86/android-sdk-linux_x86/tools"
-export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/debug/target/product/$ANDROID_TARGET"
-export ANDROID_SWT="$ANDROID_HOME/out/host/linux-x86/framework"
+export ANDROID_TOOLCHAIN="$ANDROID_HOME/prebuilt/linux-x86/toolchain/arm-linux-androideabi-4.4.x/bin"
+export ANDROID_SDK="$HOME2/android-sdk-linux_x86_r14/android-sdk-linux"
+export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
+export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
+export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/$ANDROID_TARGET"
+export ANDROID_SWT="$ANDROID_SDK/tools/lib/x86_64"
 #export USE_CCACHE=1
 export CSCOPE_DB="$ANDROID_HOME/cscope"
 
 # Add tools and toolchain to path
-export PATH="$ANDROID_SDK_PLATFORM_TOOLS::$PATH:$ANDROID_SDK_TOOLS"
+export PATH="$ANDROID_SDK_PLATFORM_TOOLS:$PATH:$ANDROID_SDK_TOOLS"
 export PATH="$PATH:$ANDROID_TOOLCHAIN"
 export PATH=`path.sh`
 
@@ -129,12 +131,12 @@ function android_flash_modem_in {
 
 function android_debug_browser {
     pd $ANDROID_HOME
-    gdbclient -g gdb-7.1-arm -p :5039 -e app_process -a com.android.browser
+    gdbclient app_process :5039 com.android.browser
 }
 
 function android_debug_port_browser {
     pd $ANDROID_HOME
-    gdbclient -g gdb-7.1-arm -p :$1 -e app_process -a com.android.browser
+    gdbclient app_process :$1 com.android.browser
 }
 
 function android_boot {

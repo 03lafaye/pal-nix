@@ -1,11 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/local/mnt/workspace/plafayet/yyzubuntumdf1/quic-honeycomb-stock-300311/device/qcom/msm8660_surf'
-let g:netrw_dirhist_2='/local/mnt/workspace/plafayet/yyzubuntumdf1/quic-honeycomb-stock-290411/external/webkit/WebCore/platform/graphics/android'
-let g:netrw_dirhist_3='/local/mnt/workspace/plafayet/android-sdk-r12-linux_x86/android-sdk-linux_x86/samples/android-13/CubeLiveWallpaper'
-let g:netrw_dirhist_4='/local/mnt/workspace/plafayet/android-sdk-r12-linux_x86/android-sdk-linux_x86/samples/android-13/CubeLiveWallpaper/src'
-let g:netrw_dirhist_5='/local/mnt/workspace/plafayet/android-sdk-r12-linux_x86/android-sdk-linux_x86/samples/android-13/CubeLiveWallpaper/src/com'
-let g:netrw_dirhist_6='/local/mnt/workspace/plafayet/android-sdk-r12-linux_x86/android-sdk-linux_x86/samples/android-13/CubeLiveWallpaper/src/com/example'
-let g:netrw_dirhist_7='/local/mnt/workspace/plafayet/android-sdk-r12-linux_x86/android-sdk-linux_x86/samples/android-13/CubeLiveWallpaper/src/com/example/android'
-let g:netrw_dirhist_8='/local/mnt/workspace/plafayet/android-sdk-r12-linux_x86/android-sdk-linux_x86/samples/android-13/CubeLiveWallpaper/src/com/example/android/livecubes'
-let g:netrw_dirhist_9='/local/mnt/workspace/plafayet/android-sdk-r12-linux_x86/android-sdk-linux_x86/samples/android-13/CubeLiveWallpaper/src/com/example/android/livecubes/cube1'
+let g:netrw_dirhist_cnt =0

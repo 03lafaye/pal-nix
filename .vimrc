@@ -7,7 +7,7 @@
 " * Initial Configuration * {{{1 "
 
 " Set the location of .vim folder {{{2
-set runtimepath=~/pal-nix/.vim,$VIMRUNTIME 
+set runtimepath=/local/mnt/workspace/plafayet/pal-nix/.vim,$VIMRUNTIME
 " Jump to last cursor position when opening files {{{2
 " See |last-position-jump|.
 :au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
