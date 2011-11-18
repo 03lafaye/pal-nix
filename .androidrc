@@ -203,7 +203,7 @@ function android_unlock {
 
 function android_reinstall_browser {
     android_remount
-    adb shell rm /system/app/Browser
+    adb shell rm /system/app/Browser.apk
     adb uninstall com.android.browser
     adb install $ANDROID_PRODUCT_OUT/system/app/Browser.apk
 }
