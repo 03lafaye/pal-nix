@@ -32,7 +32,7 @@ endif
 set tags+=$HOME/.vim/tags/python.ctags
 
 " Code Completion {{{1
-set omnifunc=pythoncomplete#Complete
+" set omnifunc=pythoncomplete#Complete
 
 " Syntax error hilighting {{{1
 syn match pythonError "^\s*def\s\+\w\+(.*)\s*$" display

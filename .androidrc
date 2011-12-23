@@ -9,7 +9,7 @@ export ANDROID_TOOLCHAIN="$ANDROID_HOME/prebuilt/linux-x86/toolchain/arm-linux-a
 export ANDROID_SDK="$HOME2/android-sdk-linux_x86_r14/android-sdk-linux"
 export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
 export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
-export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/$ANDROID_TARGET"
+export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/debug/target/product/$ANDROID_TARGET"
 export ANDROID_SWT="$ANDROID_SDK/tools/lib/x86_64"
 #export USE_CCACHE=1
 export CSCOPE_DB="$ANDROID_HOME/cscope"
@@ -32,10 +32,12 @@ function android_kill_process {
 
 function android_cpu_freq {
     adb shell cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
+    adb shell cat /sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq
 }
 
 function android_cpu_scaling {
     adb shell cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    adb shell cat /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
 }
 
 function android_disable_cpu_scaling {
@@ -83,6 +85,13 @@ function android_browser_net {
 function android_browser_local {
     adb shell am start -a android.intent.action.VIEW -n \
     com.android.browser/.BrowserActivity -d "file:///data/$1" &
+}
+
+function android_push_egl {
+    android_remount
+    adb shell stop
+    adb push $ANDROID_PRODUCT_OUT/system/lib/egl/lib$1.so /system/lib/egl/
+    adb shell start
 }
 
 function android_push_lib {
@@ -213,6 +222,10 @@ function android_reinstall_framework {
     adb shell stop
     adb push $ANDROID_PRODUCT_OUT/system/framework/framework.jar /system/framework
     adb shell start
+}
+
+function android_mount_ext3 {
+    adb shell mount -t ext4 /dev/block/mmcblk1p1 /sdcard
 }
 
 alias logtime="adb logcat WebCore:* *:S"
