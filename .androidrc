@@ -1,6 +1,6 @@
 # Android environment variables # {{{1
 export HOME2="/local/mnt/workspace/plafayet"
-export ANDROID_HOME="$HOME2/yyzubuntumdf1/quic-ics"
+export ANDROID_HOME="$HOME2/yyzubuntumdf1/quic-ics-mr1-tip"
 export ANDROID_TARGET="msm8660_surf"
 export ANDROID_IMG_SRC_DIR="$HOME2/png_images"
 export ANDROID_IMG_OUT_DIR="$HOME2/png_images/out"
@@ -9,7 +9,7 @@ export ANDROID_TOOLCHAIN="$ANDROID_HOME/prebuilt/linux-x86/toolchain/arm-linux-a
 export ANDROID_SDK="$HOME2/android-sdk-linux_x86_r14/android-sdk-linux"
 export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
 export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
-export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/debug/target/product/$ANDROID_TARGET"
+export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/$ANDROID_TARGET"
 export ANDROID_SWT="$ANDROID_SDK/tools/lib/x86_64"
 #export USE_CCACHE=1
 export CSCOPE_DB="$ANDROID_HOME/cscope"
@@ -101,6 +101,13 @@ function android_push_lib {
     adb shell start
 }
 
+function android_push_lib_in {
+    android_remount
+    adb shell stop
+    adb push $2/lib$1.so /system/lib
+    adb shell start
+}
+
 function android_push_bin {
     android_remount
     adb push $ANDROID_PRODUCT_OUT/system/bin/$1 /system/bin
@@ -110,8 +117,16 @@ function android_flash_system_in {
     sudo fastboot flash system $1/system.img.ext4
 }
 
+function android_flash_nand_system_in {
+    sudo fastboot flash system $1/system.img
+}
+
 function android_flash_system {
     sudo fastboot flash system $ANDROID_PRODUCT_OUT/system.img.ext4
+}
+
+function android_flash_nand_system {
+    sudo fastboot flash system $ANDROID_PRODUCT_OUT/system.img
 }
 
 function android_flash_all_in {
@@ -121,10 +136,24 @@ function android_flash_all_in {
     sudo fastboot boot $1/boot.img
 }
 
+function android_flash_nand_all_in {
+    sudo fastboot flash userdata $1/userdata.img
+    sudo fastboot flash system $1/system.img
+    sudo fastboot flash persist $1/persist.img
+    sudo fastboot boot $1/boot.img
+}
+
 function android_flash_all {
     sudo fastboot flash userdata $ANDROID_PRODUCT_OUT/userdata.img.ext4
     sudo fastboot flash system $ANDROID_PRODUCT_OUT/system.img.ext4
     sudo fastboot flash persist $ANDROID_PRODUCT_OUT/persist.img.ext4
+    sudo fastboot boot $ANDROID_PRODUCT_OUT/boot.img
+}
+
+function android_flash_nand_all {
+    sudo fastboot flash userdata $ANDROID_PRODUCT_OUT/userdata.img
+    sudo fastboot flash system $ANDROID_PRODUCT_OUT/system.img
+    sudo fastboot flash persist $ANDROID_PRODUCT_OUT/persist.img
     sudo fastboot boot $ANDROID_PRODUCT_OUT/boot.img
 }
 
@@ -231,5 +260,9 @@ function android_mount_ext3 {
 alias logtime="adb logcat WebCore:* *:S"
 alias logvg="adb logcat webcore:* webcore_test:* webcoreglue:* graphicscontextopenvg:* graphicscontextandroid:* painteropenvg:* surfaceopenvg:* frameview:* renderobject:* skia:* DEBUG:* WebCore:* *:S"
 alias clc="adb logcat -c"
+
+function clog {
+  $@ | coloredlogcat.py
+}
 
 # vi:set ft=sh fdm=marker sw=4 ts=4:

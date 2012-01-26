@@ -1,8 +1,5 @@
 " .vimrc
-"
-" $Author$
-" $Date$
-" $Revision$
+" @author Pierre-Antoine LaFayette
 
 " * Initial Configuration * {{{1 "
 
@@ -39,6 +36,9 @@ autocmd FileType * exec('set dictionary+=~/vimfiles/dict/' . &filetype)
 
 " Set the shell to load bash {{{2
 set shell=bash\ --login
+
+" Templates {{{2
+:autocmd BufNewFile *.html 0r $HOME/pal-nix/.vim/templates/skeleton.html
 
 " * User Interface * {{{1 "
 " turn on coloring {{{2
