@@ -1,8 +1,5 @@
 " quic.vim - vim configuration for QUIC Webtech development
-"
-" $Author: pierre.lafayette $
-" $Date:$
-" $Revision: $ 
+" @author pierre.lafayette
 
 let host = system('echo $HOSTNAME')
 if ( host !~ 'Dende' ) 
