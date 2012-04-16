@@ -1,6 +1,6 @@
 # Android environment variables # {{{1
 export HOME2="/local/mnt/workspace/plafayet"
-export ANDROID_HOME="$HOME2/yyzubuntumdf1/quic-ics-mr1-tip"
+export ANDROID_HOME="/prj/webtech_yyz1/plafayet/quic-ics-chocolate"
 export ANDROID_TARGET="msm8660_surf"
 export ANDROID_IMG_SRC_DIR="$HOME2/png_images"
 export ANDROID_IMG_OUT_DIR="$HOME2/png_images/out"
@@ -11,11 +11,12 @@ export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
 export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
 export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/$ANDROID_TARGET"
 export ANDROID_SWT="$ANDROID_SDK/tools/lib/x86_64"
+export ANDROID_DUMPRENDERTREE="$HOME2/dumprendertree"
 #export USE_CCACHE=1
 export CSCOPE_DB="$ANDROID_HOME/cscope"
 
 # Add tools and toolchain to path
-export PATH="$ANDROID_SDK_PLATFORM_TOOLS:$PATH:$ANDROID_SDK_TOOLS"
+export PATH="$ANDROID_SDK_PLATFORM_TOOLS:$PATH:$ANDROID_SDK_TOOLS:$ANDROID_DUMPRENDERTREE"
 export PATH="$PATH:$ANDROID_TOOLCHAIN"
 export PATH=`path.sh`
 
@@ -186,7 +187,7 @@ function android_boot_in {
 }
 
 function android_crash_backtrace {
-    stack --symbols-dir=$ANDROID_PRODUCT_OUT/symbols $1
+    $ANDROID_HOME/development/scripts/stack --symbols-dir=$ANDROID_PRODUCT_OUT/symbols $1
 }
 
 function android_media_volume {
