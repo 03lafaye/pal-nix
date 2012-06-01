@@ -258,9 +258,17 @@ function android_mount_ext3 {
     adb shell mount -t ext4 /dev/block/mmcblk1p1 /sdcard
 }
 
+function android_set_wifi_8960 {
+    adb shell stop
+    adb shell mount -rw -o remount -t ext4 /dev/block/mmcblk0p12 /system
+    adb push WCNSS_qcom.cfg.ini /data/misc/wifi/
+    adb shell start
+}
+
 alias logtime="adb logcat WebCore:* *:S"
 alias logvg="adb logcat webcore:* webcore_test:* webcoreglue:* graphicscontextopenvg:* graphicscontextandroid:* painteropenvg:* surfaceopenvg:* frameview:* renderobject:* skia:* DEBUG:* WebCore:* *:S"
 alias clc="adb logcat -c"
+alias mm="time mm"
 
 function clog {
   $@ | coloredlogcat.py

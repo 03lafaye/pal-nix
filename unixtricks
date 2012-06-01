@@ -694,6 +694,9 @@ then simply push and pull
 must edit description locally and remotely .git/description and myapp.git/description
 
 # Daily Usage {{{2
+# List files in change showing full path {{{3
+git diff-tree e8225b1a5a64c87a78e2003dfcd54bf7f99dcc53 --stat=200,200
+
 # Remove remote branch {{{3
 git push repository :branch
 
