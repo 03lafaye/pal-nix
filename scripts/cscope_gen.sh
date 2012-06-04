@@ -7,6 +7,8 @@ find $1 -name '*.py' \
 -o -name '*.cpp' \
 -o -name '*.cc' \
 -o -name '*.hpp'  \
+-o -name '*.mk' \
+-o -name '*.xml' \
 > cscope.files
 
 # -b: just build
