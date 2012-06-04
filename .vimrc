@@ -1,13 +1,10 @@
 " .vimrc
-"
-" $Author$
-" $Date$
-" $Revision$
+" @author Pierre-Antoine LaFayette
 
 " * Initial Configuration * {{{1 "
 
 " Set the location of .vim folder {{{2
-set runtimepath=/local/mnt/workspace/plafayet/pal-nix/.vim,$VIMRUNTIME
+set runtimepath=$HOME/pal-nix/.vim,$VIMRUNTIME
 " Jump to last cursor position when opening files {{{2
 " See |last-position-jump|.
 :au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -39,6 +36,9 @@ autocmd FileType * exec('set dictionary+=~/vimfiles/dict/' . &filetype)
 
 " Set the shell to load bash {{{2
 set shell=bash\ --login
+
+" Templates {{{2
+:autocmd BufNewFile *.html 0r $HOME/pal-nix/.vim/templates/skeleton.html
 
 " * User Interface * {{{1 "
 " turn on coloring {{{2

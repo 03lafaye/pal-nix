@@ -12,6 +12,7 @@ export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
 export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/$ANDROID_TARGET"
 export ANDROID_HOST_TOOLS="$ANDROID_HOME/out/host/linux-x86/bin"
 export ANDROID_SWT="$ANDROID_SDK/tools/lib/x86_64"
+export ANDROID_DUMPRENDERTREE="$HOME2/dumprendertree"
 #export USE_CCACHE=1
 export CSCOPE_DB="$ANDROID_HOME/cscope"
 
@@ -32,10 +33,12 @@ function android_kill_process {
 
 function android_cpu_freq {
     adb shell cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
+    adb shell cat /sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq
 }
 
 function android_cpu_scaling {
     adb shell cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    adb shell cat /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
 }
 
 function android_disable_cpu_scaling {
@@ -85,10 +88,24 @@ function android_browser_local {
     com.android.browser/.BrowserActivity -d "file:///data/$1" &
 }
 
+function android_push_egl {
+    android_remount
+    adb shell stop
+    adb push $ANDROID_PRODUCT_OUT/system/lib/egl/lib$1.so /system/lib/egl/
+    adb shell start
+}
+
 function android_push_lib {
     android_remount
     adb shell stop
     adb push $ANDROID_PRODUCT_OUT/system/lib/lib$1.so /system/lib
+    adb shell start
+}
+
+function android_push_lib_in {
+    android_remount
+    adb shell stop
+    adb push $2/lib$1.so /system/lib
     adb shell start
 }
 
@@ -101,8 +118,16 @@ function android_flash_system_in {
     sudo fastboot flash system $1/system.img.ext4
 }
 
+function android_flash_nand_system_in {
+    sudo fastboot flash system $1/system.img
+}
+
 function android_flash_system {
     sudo fastboot flash system $ANDROID_PRODUCT_OUT/system.img.ext4
+}
+
+function android_flash_nand_system {
+    sudo fastboot flash system $ANDROID_PRODUCT_OUT/system.img
 }
 
 function android_flash_all_in {
@@ -112,10 +137,24 @@ function android_flash_all_in {
     sudo fastboot boot $1/boot.img
 }
 
+function android_flash_nand_all_in {
+    sudo fastboot flash userdata $1/userdata.img
+    sudo fastboot flash system $1/system.img
+    sudo fastboot flash persist $1/persist.img
+    sudo fastboot boot $1/boot.img
+}
+
 function android_flash_all {
     sudo fastboot flash userdata $ANDROID_PRODUCT_OUT/userdata.img.ext4
     sudo fastboot flash system $ANDROID_PRODUCT_OUT/system.img.ext4
     sudo fastboot flash persist $ANDROID_PRODUCT_OUT/persist.img.ext4
+    sudo fastboot boot $ANDROID_PRODUCT_OUT/boot.img
+}
+
+function android_flash_nand_all {
+    sudo fastboot flash userdata $ANDROID_PRODUCT_OUT/userdata.img
+    sudo fastboot flash system $ANDROID_PRODUCT_OUT/system.img
+    sudo fastboot flash persist $ANDROID_PRODUCT_OUT/persist.img
     sudo fastboot boot $ANDROID_PRODUCT_OUT/boot.img
 }
 
@@ -148,7 +187,7 @@ function android_boot_in {
 }
 
 function android_crash_backtrace {
-    stack --symbols-dir=$ANDROID_PRODUCT_OUT/symbols $1
+    $ANDROID_HOME/development/scripts/stack --symbols-dir=$ANDROID_PRODUCT_OUT/symbols $1
 }
 
 function android_media_volume {
@@ -203,7 +242,7 @@ function android_unlock {
 
 function android_reinstall_browser {
     android_remount
-    adb shell rm /system/app/Browser
+    adb shell rm /system/app/Browser.apk
     adb uninstall com.android.browser
     adb install $ANDROID_PRODUCT_OUT/system/app/Browser.apk
 }
@@ -215,9 +254,24 @@ function android_reinstall_framework {
     adb shell start
 }
 
+function android_mount_ext3 {
+    adb shell mount -t ext4 /dev/block/mmcblk1p1 /sdcard
+}
+
+function android_set_wifi_8960 {
+    adb shell stop
+    adb shell mount -rw -o remount -t ext4 /dev/block/mmcblk0p12 /system
+    adb push WCNSS_qcom.cfg.ini /data/misc/wifi/
+    adb shell start
+}
+
 alias logtime="adb logcat WebCore:* *:S"
 alias logvg="adb logcat webcore:* webcore_test:* webcoreglue:* graphicscontextopenvg:* graphicscontextandroid:* painteropenvg:* surfaceopenvg:* frameview:* renderobject:* skia:* DEBUG:* WebCore:* *:S"
 alias clc="adb logcat -c"
 alias mm="time mm"
+
+function clog {
+  $@ | coloredlogcat.py
+}
 
 # vi:set ft=sh fdm=marker sw=4 ts=4:
