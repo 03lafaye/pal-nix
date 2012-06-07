@@ -10,14 +10,14 @@ export ANDROID_SDK="$HOME2/android-sdk-linux_x86_r14/android-sdk-linux"
 export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
 export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
 export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/$ANDROID_TARGET"
+export ANDROID_HOST_TOOLS="$ANDROID_HOME/out/host/linux-x86/bin"
 export ANDROID_SWT="$ANDROID_SDK/tools/lib/x86_64"
 export ANDROID_DUMPRENDERTREE="$HOME2/dumprendertree"
 #export USE_CCACHE=1
 export CSCOPE_DB="$ANDROID_HOME/cscope"
 
 # Add tools and toolchain to path
-export PATH="$ANDROID_SDK_PLATFORM_TOOLS:$PATH:$ANDROID_SDK_TOOLS:$ANDROID_DUMPRENDERTREE"
-export PATH="$PATH:$ANDROID_TOOLCHAIN"
+export PATH="$PATH:$ANDROID_HOST_TOOLS:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_TOOLCHAIN"
 export PATH=`path.sh`
 
 # Android utility functions # {{{1

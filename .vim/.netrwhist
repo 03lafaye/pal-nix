@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/local/mnt/workspace/plafayet/switch-test'
-let g:netrw_dirhist_2='/local/mnt/workspace/plafayet/pal-nix/.vim/scripts'
-let g:netrw_dirhist_3='/var/www/kronos/sdk/tests/conformance/more'
-let g:netrw_dirhist_4='/local/mnt/workspace/plafayet/webgl-conformance-tester'
-let g:netrw_dirhist_5='/var/www/bookcase'
-let g:netrw_dirhist_6='/prj/webtech_yyz1/plafayet/quic-ics-chocolate/external/webkit/.git'

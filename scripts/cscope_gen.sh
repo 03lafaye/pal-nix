@@ -9,6 +9,8 @@ find $1 -name '*.py' \
 -o -name '*.hpp'  \
 -o -name '*.html' \
 -o -name '*.js' \
+-o -name '*.mk' \
+-o -name '*.xml' \
 > cscope.files
 
 # -b: just build
