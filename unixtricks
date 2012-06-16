@@ -369,6 +369,10 @@ gqap
 gq
 
 # * Unix * {{{1 #
+# ffmpeg {{{2
+# To cut an mp3
+ffmpeg.exe -ss 00:04:00.00 -t 3 -i Secret_To_Success_-_Eric_Thomas.mp3 -acodec copy sleep.mp3
+
 # Binary data tools {{{2
 objdump - Dumps symbols of so files with -T
 bsdiff  - Creates patches for binary files
