@@ -672,6 +672,9 @@ svn co file:///home/pierre/svn/repos/proj
 svn log -r {YYYY-mm-dd}:{YYYY-mm-dd} path
 
 # * GIT * {{{1 #
+# Apply commit from a patch file {{{2
+git am -i ~/0001_Memory_leak_in_WebGL_reported_by_Coverity.patch
+
 # initialize a new repository {{{2
 cd myproject; git init
 
