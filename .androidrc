@@ -134,7 +134,8 @@ function android_flash_all_in {
     sudo fastboot flash userdata $1/userdata.img.ext4
     sudo fastboot flash system $1/system.img.ext4
     sudo fastboot flash persist $1/persist.img.ext4
-    sudo fastboot boot $1/boot.img
+    sudo fastboot flash boot $1/boot.img
+    sudo fastboot continue
 }
 
 function android_flash_nand_all_in {
@@ -148,7 +149,8 @@ function android_flash_all {
     sudo fastboot flash userdata $ANDROID_PRODUCT_OUT/userdata.img.ext4
     sudo fastboot flash system $ANDROID_PRODUCT_OUT/system.img.ext4
     sudo fastboot flash persist $ANDROID_PRODUCT_OUT/persist.img.ext4
-    sudo fastboot boot $ANDROID_PRODUCT_OUT/boot.img
+    sudo fastboot flash boot $ANDROID_PRODUCT_OUT/boot.img
+    sudo fastboot continue
 }
 
 function android_flash_nand_all {
