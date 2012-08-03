@@ -1,7 +1,7 @@
 # Android environment variables # {{{1
 export HOME2="/local/mnt/workspace/plafayet"
 export ANDROID_HOME="/prj/webtech_yyz1/plafayet/quic-ics-tip"
-export ANDROID_TARGET="msm8660_surf"
+export ANDROID_TARGET="msm8960"
 export ANDROID_IMG_SRC_DIR="$HOME2/png_images"
 export ANDROID_IMG_OUT_DIR="$HOME2/png_images/out"
 export ANDROID_BUILD_TOP=$ANDROID_HOME
@@ -9,6 +9,7 @@ export ANDROID_TOOLCHAIN="$ANDROID_HOME/prebuilt/linux-x86/toolchain/arm-linux-a
 export ANDROID_SDK="$HOME2/android-sdk-linux_x86_r14/android-sdk-linux"
 export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
 export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
+
 export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/$ANDROID_TARGET"
 export ANDROID_HOST_TOOLS="$ANDROID_HOME/out/host/linux-x86/bin"
 export ANDROID_SWT="$ANDROID_SDK/tools/lib/x86_64"
@@ -16,7 +17,12 @@ export ANDROID_DUMPRENDERTREE="$HOME2/dumprendertree"
 #export USE_CCACHE=1
 export CSCOPE_DB="$ANDROID_HOME/cscope"
 
-# Add tools and toolchain to path
+# Chrome for Android environment variables # {{{1
+export ANDROID_SDK_ROOT=$ANDROID_SDK
+export ANDROID_NDK_ROOT="$HOME2/android-ndk-r8b"
+
+
+# Add tools and toolchain to path # {{{1
 export PATH="$PATH:$ANDROID_HOST_TOOLS:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_TOOLCHAIN"
 export PATH=`path.sh`
 
