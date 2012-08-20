@@ -13,7 +13,9 @@ OUTPUT_FILE = 'cscope.files'
 start_time = time.time()
 output_file = open(OUTPUT_FILE, 'w')
 
-for root, dirs, files in os.walk('.'):
+current_path = os.path.abspath('.')
+
+for root, dirs, files in os.walk(current_path):
     for directory in EXCLUDED_DIRS:
         if directory in dirs:
             dirs.remove(directory)
