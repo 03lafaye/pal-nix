@@ -802,6 +802,8 @@ cont n # continue till nth time breakpoint is hit
 info br # show breakpoints
 where # show stack trace
 wh # opens a split source window that shows the current position
+fs next # moves focus from source window to command window
+python # can import python scripts to handle things like pretty printing user defined types
 
 # * Modeline * {{{1 #
 # vi:set fdm=marker:
