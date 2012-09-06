@@ -1,8 +1,8 @@
 [color]
 	ui = auto
 [user]
-	name = Pierre LaFayette
-	email = plafayet@qualcomm.com
+	name = Pierre-Antoine LaFayette
+	email = plafayet@codeaurora.org
 [alias]
   ci = commit -a
   co = checkout
