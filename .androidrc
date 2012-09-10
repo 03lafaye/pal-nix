@@ -1,6 +1,6 @@
 # Android environment variables # {{{1
 export HOME2="/local/mnt/workspace/plafayet"
-export ANDROID_HOME="/prj/webtech_yyz2/plafayet/quic-jb-au92"
+export ANDROID_HOME="/prj/webtech_yyz1/plafayet/quic-jb-au83"
 export ANDROID_TARGET="msm8960"
 export ANDROID_IMG_SRC_DIR="$HOME2/png_images"
 export ANDROID_IMG_OUT_DIR="$HOME2/png_images/out"
