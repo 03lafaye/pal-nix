@@ -672,6 +672,7 @@ svn co file:///home/pierre/svn/repos/proj
 svn log -r {YYYY-mm-dd}:{YYYY-mm-dd} path
 
 # * GIT * {{{1 #
+
 # Apply commit from a patch file {{{2
 git am -i ~/0001_Memory_leak_in_WebGL_reported_by_Coverity.patch
 
@@ -700,7 +701,15 @@ then simply push and pull
 # project description {{{2
 must edit description locally and remotely .git/description and myapp.git/description
 
+# Update the global author name and email {{{2
+git config --global user.name "Pierre-Antoine LaFayette"
+git config --global user.email pierre.lafayette@gmail.com
+git commit --amend --reset-author
+
 # Daily Usage {{{2
+# Git diff no whitespace {{{3
+git diff -w
+
 # List files in change showing full path {{{3
 git diff-tree e8225b1a5a64c87a78e2003dfcd54bf7f99dcc53 --stat=200,200
 
