@@ -22,10 +22,12 @@ export CSCOPE_DB="$ANDROID_HOME/cscope"
 # Chrome for Android environment variables # {{{1
 export CHROME_HOME="$YYZ2/chromium/src"
 export PATH="$PATH:$YYZ2/depot_tools"
-
-# Add tools and toolchain to path # {{{1
-#export PATH="$PATH:$ANDROID_HOST_TOOLS:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_TOOLCHAIN" # may not need to do this anymore
 export PATH=`path.sh`
+
+function chrome_setup {
+    pd $CHROME_HOME
+    . build/android/envsetup.sh
+}
 
 # Android utility functions # {{{1
 
