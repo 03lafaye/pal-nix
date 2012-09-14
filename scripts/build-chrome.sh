@@ -18,6 +18,8 @@ then
     if [ -f $HOME/pal-nix/.gclient ]
     then
         cp $HOME/pal-nix/.gclient .gclient
+    else
+        echo "target_os = ['android']" >> .gclient
     fi
 fi
 
