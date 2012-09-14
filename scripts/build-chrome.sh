@@ -33,6 +33,7 @@ fi
 
 echo "Setting up Chrome for Android build environment..."
 pushd src
+export CHROME_SRC=
 . build/android/envsetup.sh
 
 echo "Executing gclient runhooks..."
