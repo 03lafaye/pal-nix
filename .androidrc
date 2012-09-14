@@ -1,5 +1,7 @@
 # Android environment variables # {{{1
 export HOME2="/local/mnt/workspace/plafayet"
+export YYZ1="/prj/webtech_yyz1/plafayet"
+export YYZ2="/prj/webtech_yyz2/plafayet"
 export ANDROID_HOME="/prj/webtech_yyz1/plafayet/quic-jb-au83"
 export ANDROID_TARGET="msm8960"
 export ANDROID_IMG_SRC_DIR="$HOME2/png_images"
@@ -18,12 +20,11 @@ export ANDROID_DUMPRENDERTREE="$HOME2/dumprendertree"
 export CSCOPE_DB="$ANDROID_HOME/cscope"
 
 # Chrome for Android environment variables # {{{1
-export ANDROID_SDK_ROOT=$ANDROID_SDK
-export ANDROID_NDK_ROOT="$HOME2/android-ndk-r8b"
-
+export CHROME_HOME="$YYZ2/chromium/src"
+export PATH="$PATH:$YYZ2/depot_tools"
 
 # Add tools and toolchain to path # {{{1
-export PATH="$PATH:$ANDROID_HOST_TOOLS:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_TOOLCHAIN"
+#export PATH="$PATH:$ANDROID_HOST_TOOLS:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_TOOLCHAIN" # may not need to do this anymore
 export PATH=`path.sh`
 
 # Android utility functions # {{{1
