@@ -94,6 +94,7 @@ function vd() { vim -c "cs find d ""$1"; }
 function ve() { vim -c "cs find e ""$1"; }
 alias gits='git svn'
 function gmysql() { /usr/bin/mysql -b -D "$1" -u "$2" -p; }
+alias wgetsite="wget --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --no-parent"
 function motd()
 {
     clear

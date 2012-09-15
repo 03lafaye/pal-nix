@@ -1,13 +1,15 @@
 [color]
-	ui = auto
+    ui = auto
 [user]
-	name = Pierre LaFayette
-	email = plafayet@qualcomm.com
+	name = Pierre-Antoine LaFayette
+	email = plafayet@codeaurora.org
 [alias]
-  ci = commit -a
-  co = checkout
-  st = status
-  br = branch
-  ap = apply
+    ci = commit -a
+    co = checkout
+    st = status
+    br = branch
+    ap = apply
 [core]
-	excludesfile = /home/plafayet/.gitignore
+    excludesfile = /home/plafayet/.gitignore
+[merge]
+    tool = vimdiff

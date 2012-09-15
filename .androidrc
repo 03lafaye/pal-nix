@@ -1,7 +1,9 @@
 # Android environment variables # {{{1
-export HOME2="$HOME"
-export ANDROID_HOME="$HOME2/yyzubuntumdf1/quic-ics-mr1-tip"
-export ANDROID_TARGET="msm8660_surf"
+export HOME2="/local/mnt/workspace/plafayet"
+export YYZ1="/prj/webtech_yyz1/plafayet"
+export YYZ2="/prj/webtech_yyz2/plafayet"
+export ANDROID_HOME="/prj/webtech_yyz1/plafayet/quic-jb-au83"
+export ANDROID_TARGET="msm8960"
 export ANDROID_IMG_SRC_DIR="$HOME2/png_images"
 export ANDROID_IMG_OUT_DIR="$HOME2/png_images/out"
 export ANDROID_BUILD_TOP=$ANDROID_HOME
@@ -11,6 +13,7 @@ export ANDROID_SDK_ROOT=$ANDROID_SDK
 export ANDROID_NDK_ROOT="$HOME2/android-ndk-r6b"
 export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
 export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
+
 export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/$ANDROID_TARGET"
 export ANDROID_HOST_TOOLS="$ANDROID_HOME/out/host/linux-x86/bin"
 export ANDROID_SWT="$ANDROID_SDK/tools/lib/x86_64"
@@ -18,9 +21,15 @@ export ANDROID_DUMPRENDERTREE="$HOME2/dumprendertree"
 #export USE_CCACHE=1
 export CSCOPE_DB="$ANDROID_HOME/cscope"
 
-# Add tools and toolchain to path
-export PATH="$PATH:$ANDROID_HOST_TOOLS:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_TOOLCHAIN"
+# Chrome for Android environment variables # {{{1
+export CHROME_HOME="$YYZ2/chromium/src"
+export PATH="$PATH:$YYZ2/depot_tools"
 export PATH=`path.sh`
+
+function chrome_setup {
+    pd $CHROME_HOME
+    . build/android/envsetup.sh
+}
 
 # Android utility functions # {{{1
 
@@ -136,7 +145,8 @@ function android_flash_all_in {
     sudo fastboot flash userdata $1/userdata.img.ext4
     sudo fastboot flash system $1/system.img.ext4
     sudo fastboot flash persist $1/persist.img.ext4
-    sudo fastboot boot $1/boot.img
+    sudo fastboot flash boot $1/boot.img
+    sudo fastboot continue
 }
 
 function android_flash_nand_all_in {
@@ -150,7 +160,8 @@ function android_flash_all {
     sudo fastboot flash userdata $ANDROID_PRODUCT_OUT/userdata.img.ext4
     sudo fastboot flash system $ANDROID_PRODUCT_OUT/system.img.ext4
     sudo fastboot flash persist $ANDROID_PRODUCT_OUT/persist.img.ext4
-    sudo fastboot boot $ANDROID_PRODUCT_OUT/boot.img
+    sudo fastboot flash boot $ANDROID_PRODUCT_OUT/boot.img
+    sudo fastboot continue
 }
 
 function android_flash_nand_all {
