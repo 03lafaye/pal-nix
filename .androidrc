@@ -21,6 +21,8 @@ export ANDROID_DUMPRENDERTREE="$HOME2/dumprendertree"
 #export USE_CCACHE=1
 export CSCOPE_DB="$ANDROID_HOME/cscope"
 
+export PATH="$PATH:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS"
+
 # Chrome for Android environment variables # {{{1
 export CHROME_HOME="$YYZ2/chromium/src"
 export PATH="$PATH:$YYZ2/depot_tools"
