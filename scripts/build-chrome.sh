@@ -38,16 +38,19 @@ pushd src
 export CHROME_SRC=
 . build/android/envsetup.sh
 
-echo "Executing gclient runhooks..."
-gclient runhooks
+echo "Executing gclient runhooks using ninja..."
+GYP_GENERATORS=ninja gclient runhooks -v
+
+ninja -Cout/Debug -v
 
 # You may need to install the build dependencies for android:
 # pushd build
 # sudo ./install-build-deps-android.sh
 # popd
 
-echo "Executing android_gyp..."
-android_gyp
+# Old build method:
+#echo "Executing android_gyp..."
+#android_gyp
 
-echo "Building Chrome for Android..."
-time make -j12
+#echo "Building Chrome for Android..."
+#time make -j12
