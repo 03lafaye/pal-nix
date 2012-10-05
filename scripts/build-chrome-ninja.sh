@@ -46,4 +46,4 @@ GYP_GENERATORS=ninja gclient runhooks -v
 # sudo ./install-build-deps-android.sh
 # popd
 
-ninja -Cout/Debug -v
+ninja -C out/Debug -j 12
