@@ -4,7 +4,8 @@
 	name = Pierre-Antoine LaFayette
 	email = plafayet@codeaurora.org
 [alias]
-    ci = commit -a
+    ca = commit -a
+    ci = commit
     co = checkout
     st = status
     br = branch
