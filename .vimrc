@@ -122,8 +122,8 @@ inoremap <silent> <F2> <ESC>:nohlsearch<CR>a
 " NERD Tree Explorer {{{3
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
-" Open tag list {{{3
-nnoremap <silent> <F4> :TlistToggle<CR>
+" Open buffer list {{{3
+nnoremap <silent> <F4> :BufExplorerHorizontalSplit<CR>
 
 " Spell check {{{3
 nnoremap <silent> <F6> :set spell<CR>
