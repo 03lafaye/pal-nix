@@ -2,7 +2,7 @@
 export HOME2="/local/mnt/workspace/plafayet"
 export YYZ1="/prj/webtech_yyz1/plafayet"
 export YYZ2="/prj/webtech_yyz2/plafayet"
-export ANDROID_HOME="/prj/webtech_yyz1/plafayet/quic-jb-au83"
+export ANDROID_HOME="$YYZ1/quic-jb-rel-rb4.2"
 export ANDROID_TARGET="msm8960"
 export ANDROID_IMG_SRC_DIR="$HOME2/png_images"
 export ANDROID_IMG_OUT_DIR="$HOME2/png_images/out"
