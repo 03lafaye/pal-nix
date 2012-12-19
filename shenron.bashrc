@@ -10,7 +10,7 @@ export PYTHONPATH=$HOME/lib/python2.5/site-packages
 #--------- Aliases --------# {{{1
 
 alias doc="pd \"c:/Users/pierre/Documents\""
-alias gvim="\"c:/Program Files/vim/vim72/gvim.exe\""
+alias gvim="\"c:/Program Files/vim/vim73/gvim.exe\""
 alias htdocs="pd \"c:/Program Files/Apache Software Foundation/Apache2.2/htdocs\"" 
 alias myip='c:/windows/system32/ipconfig | grep "IP Address" | awk "{ print \$15 }"'
 alias phpsh="/cygdrive/c/Program\ Files/PHP/phpsh/phpsh"  

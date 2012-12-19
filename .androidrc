@@ -8,9 +8,9 @@ export ANDROID_IMG_SRC_DIR="$HOME2/png_images"
 export ANDROID_IMG_OUT_DIR="$HOME2/png_images/out"
 export ANDROID_BUILD_TOP=$ANDROID_HOME
 export ANDROID_TOOLCHAIN="$ANDROID_HOME/prebuilt/linux-x86/toolchain/arm-linux-androideabi-4.4.x/bin"
-export ANDROID_SDK="$HOME2/android-sdk-linux"
+export ANDROID_SDK="/cygdrive/c/Program Files/Android/android-sdk"
 export ANDROID_SDK_ROOT=$ANDROID_SDK
-export ANDROID_NDK_ROOT="$HOME2/android-ndk-r6b"
+export ANDROID_NDK_ROOT="/home/Pierre-Antoine/android-ndk-r8c"
 export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
 export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
 
@@ -21,7 +21,7 @@ export ANDROID_DUMPRENDERTREE="$HOME2/dumprendertree"
 #export USE_CCACHE=1
 export CSCOPE_DB="$ANDROID_HOME/cscope"
 
-export PATH="$PATH:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS"
+export PATH="$PATH:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_NDK_ROOT"
 
 # Chrome for Android environment variables # {{{1
 export CHROME_HOME="$YYZ2/chromium/src"
