@@ -813,6 +813,8 @@ where # show stack trace
 wh # opens a split source window that shows the current position
 fs next # moves focus from source window to command window
 python # can import python scripts to handle things like pretty printing user defined types
+call f(a) # can call a function
+set overload-resolution off # if getting errors about not being able to resolve overloaded function
 
 # * Modeline * {{{1 #
 # vi:set fdm=marker:
