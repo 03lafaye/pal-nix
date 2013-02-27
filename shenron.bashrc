@@ -16,7 +16,6 @@ alias myip='c:/windows/system32/ipconfig | grep "IP Address" | awk "{ print \$15
 alias phpsh="/cygdrive/c/Program\ Files/PHP/phpsh/phpsh"  
 alias nbeauty="beautify.py -f ' ' -t '_' -L -n "
 alias beauty="beautify.py -f ' ' -t '_' -L " 
-alias lint="python /cygdrive/c/bin/depot_tools/cpplint.py $1"  
 
 #-------- MP3 utilities --------# {{{1
 

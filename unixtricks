@@ -809,12 +809,23 @@ disable n # disable the nth breakpoint
 enable n # enable nth breakpoint
 cont n # continue till nth time breakpoint is hit
 info br # show breakpoints
+info threads # show threads
+info args # print args to current function
+whatis variable # print type of var
+info sharedlibrary # show loaded libraries
+info locals # view all local variables
+backtrace full # show complete bt with local vars
 where # show stack trace
 wh # opens a split source window that shows the current position
+ctrl+x a # close TUI window
+layout next # switch between different TUI layouts
 fs next # moves focus from source window to command window
 python # can import python scripts to handle things like pretty printing user defined types
 call f(a) # can call a function
 set overload-resolution off # if getting errors about not being able to resolve overloaded function
+p/d 0x10 # print decimal value
+p/t 0x10 # print binary value
+p/x 256 # print hex value
 
 # * Modeline * {{{1 #
 # vi:set fdm=marker:
