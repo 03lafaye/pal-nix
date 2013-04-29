@@ -2,7 +2,7 @@
     ui = auto
 [user]
 	name = Pierre-Antoine LaFayette
-	email = plafayet@codeaurora.org
+	email = pierre.lafayette@gmail.com
 [alias]
     ca = commit -a
     ci = commit
