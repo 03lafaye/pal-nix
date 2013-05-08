@@ -707,6 +707,9 @@ git config --global user.email pierre.lafayette@gmail.com
 git commit --amend --reset-author
 
 # Daily Usage {{{2
+# Find common ancestor commit {{{3
+git merge-base master branch
+
 # Git diff no whitespace {{{3
 git diff -w
 
