@@ -1,7 +1,5 @@
 # Android environment variables # {{{1
 export HOME2="/local/mnt/workspace/plafayet"
-export YYZ1="/prj/webtech_yyz1/plafayet"
-export YYZ2="/prj/webtech_yyz2/plafayet"
 export ANDROID_HOME="$YYZ1/quic-jb-rel-rb4.2"
 export ANDROID_TARGET="msm8960"
 export ANDROID_IMG_SRC_DIR="$HOME2/png_images"
@@ -24,8 +22,8 @@ export CSCOPE_DB="$ANDROID_HOME/cscope"
 export PATH="$PATH:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_NDK_ROOT"
 
 # Chrome for Android environment variables # {{{1
-export CHROME_HOME="$YYZ2/chromium/src"
-export PATH="$PATH:$YYZ2/depot_tools"
+export CHROME_HOME="$HOME/chromium/src"
+export PATH="$PATH:$HOME/depot_tools"
 export PATH=`path.sh`
 
 function chrome_setup {
@@ -41,6 +39,15 @@ function android_kill_process {
     if [ -n "$process" ]; then
         echo "Killing $1 process id $process"
         adb shell kill $process
+    fi
+}
+
+function android_process_memory {
+    process=`adb shell ps | grep $1 | awk '{print $2}' | sed -e 's/  *$//'`
+
+    if [ -n "$process" ]; then
+        echo "Memory usage for $1 process id $process"
+        adb shell dumpsys meminfo $process
     fi
 }
 
