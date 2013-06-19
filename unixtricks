@@ -710,6 +710,9 @@ git config --global user.email pierre.lafayette@gmail.com
 git commit --amend --reset-author
 
 # Daily Usage {{{2
+# Find commit that changed a line {{{3
+git log -S<string> path/to/file
+
 # Find common ancestor commit {{{3
 git merge-base master branch
 
