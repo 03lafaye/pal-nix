@@ -1,23 +1,23 @@
 # Android environment variables # {{{1
 export HOME2="/local/mnt/workspace/plafayet"
-export ANDROID_HOME="$YYZ1/quic-jb-rel-rb4.2"
-export ANDROID_TARGET="msm8960"
+export ANDROID_HOME="/Applications/Android Studio.app/sdk"
+#export ANDROID_TARGET=""
 export ANDROID_IMG_SRC_DIR="$HOME2/png_images"
 export ANDROID_IMG_OUT_DIR="$HOME2/png_images/out"
 export ANDROID_BUILD_TOP=$ANDROID_HOME
-export ANDROID_TOOLCHAIN="$ANDROID_HOME/prebuilt/linux-x86/toolchain/arm-linux-androideabi-4.4.x/bin"
-export ANDROID_SDK="/Users/plafayette/adt-bundle-mac-x86_64-20130219/sdk"
+#export ANDROID_TOOLCHAIN="$ANDROID_HOME/prebuilt/linux-x86/toolchain/arm-linux-androideabi-4.4.x/bin"
+export ANDROID_SDK=$ANDROID_HOME
 export ANDROID_SDK_ROOT=$ANDROID_SDK
-export ANDROID_NDK_ROOT="/home/Pierre-Antoine/android-ndk-r8d"
+#export ANDROID_NDK_ROOT="/home/Pierre-Antoine/android-ndk-r8d"
 export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
 export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
 
-export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/$ANDROID_TARGET"
-export ANDROID_HOST_TOOLS="$ANDROID_HOME/out/host/linux-x86/bin"
+#export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/$ANDROID_TARGET"
+#export ANDROID_HOST_TOOLS="$ANDROID_HOME/out/host/linux-x86/bin"
 export ANDROID_SWT="$ANDROID_SDK/tools/lib/x86_64"
-export ANDROID_DUMPRENDERTREE="$HOME2/dumprendertree"
+#export ANDROID_DUMPRENDERTREE="$HOME2/dumprendertree"
 #export USE_CCACHE=1
-export CSCOPE_DB="$ANDROID_HOME/cscope"
+#export CSCOPE_DB="$ANDROID_HOME/cscope"
 
 export PATH="$PATH:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_NDK_ROOT"
 

@@ -77,6 +77,21 @@ set showcmd
 " Replace ctags with cscope
 set cst
 
+" Diff function to ignore leading and trailing whitespace
+if !exists("*SeriouslyIgnoreWhitespace")
+    function SeriouslyIgnoreWhitespace()
+        let opt = ""
+        if &diffopt =~ "icase"
+            let opt = opt . "-i "
+        endif
+        if &diffopt =~ "iwhite"
+            let opt = opt . "-w "
+        endif
+        silent execute "!diff -a --binary " . opt . v:fname_in . " " . v:fname_new .
+                    \  " > " . v:fname_out
+    endfunction
+endif
+
 " Text Formatting -- General  {{{2
 set autoindent
 set backspace=2      "make backspace work normal (indent, eol, start)
@@ -107,7 +122,7 @@ set tabstop=4        "indentation levels every N columns
 set virtualedit=all  "allows the cursor to stray beyond defined text
 set wildmode=list:longest,full  "autocompletion; default to longest shared prefix
 set diffopt+=iwhite  "vimdiff to ignore changes in whitespace
-
+set diffexpr=SeriouslyIgnoreWhitespace()
 highlight CursorLine guibg=slategray guifg=white ctermbg=blue ctermfg=white
 
 " * Mappings * {{{1 "

@@ -6,7 +6,7 @@ USAGE = "Usage: padb.py $ANDROID_SOURCE $LOCAL_DESTINATION"
 
 # Execute multiple pulls using a pattern.
 def pull(args):
-    cmd = 'adb shell ls -1 %s' % args[0].strip()
+    cmd = 'adb shell ls %s' % args[0].strip()
     proc = subprocess.Popen(cmd,
                             shell=True,
                             stdout=subprocess.PIPE,

@@ -710,6 +710,10 @@ git config --global user.email pierre.lafayette@gmail.com
 git commit --amend --reset-author
 
 # Daily Usage {{{2
+
+# List of branches in order of most recent updates {{{3
+git for-each-ref --sort=-committerdate refs/heads/
+
 # Find commit that changed a line {{{3
 git log -S<string> path/to/file
 
