@@ -62,7 +62,7 @@ alias c="clear" # clean up
 function pd() { pushd "$1" 1> /dev/null; } # push directory on to stack
 alias bk="popd 1> /dev/null" # pop directory from stack
 # The 'ls' family
-alias ls="ls -F --color=auto"
+alias ls="ls -F -G"
 alias la="ls -aF"
 alias ll="ls -lh"
 alias lx="ls -lXB" # sort by extension
