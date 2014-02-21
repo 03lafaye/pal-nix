@@ -97,6 +97,7 @@ function gmysql() { /usr/bin/mysql -b -D "$1" -u "$2" -p; }
 alias wgetsite="wget --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --no-parent"
 alias g++d="g++ -g -O0 -fno-inline"
 alias gccd="gcc -g -O0 -fno-inline"
+alias gitbr='for k in `git branch | perl -pe s/^..//`; do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k -- | head -n 1`\\t$k; done | sort -r'
 
 #-------- Colors  --------# {{{1
 

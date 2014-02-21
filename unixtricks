@@ -713,6 +713,7 @@ git commit --amend --reset-author
 
 # List of branches in order of most recent updates {{{3
 git for-each-ref --sort=-committerdate refs/heads/
+for k in `git branch | perl -pe s/^..//`; do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k -- | head -n 1`\\t$k; done | sort -r
 
 # Find commit that changed a line {{{3
 git log -S<string> path/to/file
