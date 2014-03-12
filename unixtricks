@@ -5,7 +5,12 @@
 # $Revision$
 
 # * Vi * {{{1 #
-# Scrollbind
+
+# Copy to Mac OS X clipboard {{{2
+:!pbcopy
+:r !pbpaste
+
+# Scrollbind {{{2
 :set scrollbind # Allow simultaneous scrolling of multiple windows at the same time. Need to set for each window.
 
 # Write with sudo trick {{{2
