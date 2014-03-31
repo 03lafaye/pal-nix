@@ -8,7 +8,7 @@ export ANDROID_BUILD_TOP=$ANDROID_HOME
 #export ANDROID_TOOLCHAIN="$ANDROID_HOME/prebuilt/linux-x86/toolchain/arm-linux-androideabi-4.4.x/bin"
 export ANDROID_SDK=$ANDROID_HOME
 export ANDROID_SDK_ROOT=$ANDROID_SDK
-#export ANDROID_NDK_ROOT="/home/Pierre-Antoine/android-ndk-r8d"
+export ANDROID_NDK_ROOT="/Users/plafayette/android-ndk-r9d"
 export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
 export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
 
