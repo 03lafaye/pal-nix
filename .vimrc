@@ -41,6 +41,11 @@ set shell=bash\ --login
 :autocmd BufNewFile *.html 0r $HOME/pal-nix/.vim/templates/skeleton.html
 
 " * User Interface * {{{1 "
+
+" turn on coloring long lines in code {{{2
+highlight ColorColumn ctermbg=magenta
+au Filetype java,cpp,c,python,ruby call matchadd('ColorColumn', '\%81v', 100)
+
 " turn on coloring {{{2
 if has('syntax')
     syntax on
