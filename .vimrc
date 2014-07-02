@@ -42,6 +42,16 @@ set shell=bash\ --login
 
 " * User Interface * {{{1 "
 
+" drag visual blocks {{{2
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+vmap  <expr>  D        DVB_Duplicate()
+
+" remove any introduced trailing whitespace after moving...
+let g:DVB_TrimWS = 1
+
 " support Conway's autoswap plugin {{{2
 set title titlestring=
 
