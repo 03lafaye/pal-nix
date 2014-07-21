@@ -377,6 +377,10 @@ gqap
 gq
 
 # * Unix * {{{1 #
+
+# JSON pretty print {{{2
+echo '{"foo": "lorem", "bar": "ipsum"}' | python -m json.tool
+
 # ffmpeg {{{2
 # To cut an mp3
 ffmpeg.exe -ss 00:04:00.00 -t 3 -i Secret_To_Success_-_Eric_Thomas.mp3 -acodec copy sleep.mp3
