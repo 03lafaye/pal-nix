@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3.4
 
 import subprocess, os, operator
 from subprocess import DEVNULL
