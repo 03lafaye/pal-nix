@@ -4,7 +4,6 @@ import os
 import pdb
 import time
 import sys
-from os.path import join, dirname, realpath
 
 INCLUDED_FILES = ['.py', '.rb', '.java', '.c', '.h', '.cpp', '.cc', '.hpp', '.html', '.js', '.mk', '.xml', '.idl']
 EXCLUDED_DIRS = ['.git', '.repo', 'out', '.svn']
