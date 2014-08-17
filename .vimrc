@@ -238,8 +238,6 @@ au FileType help nnoremap <buffer> <A-]>
     \ :vert resize 75<CR>
     \ :exec("tag ".expand("<cword>"))<CR>
 
-" Recognize markdown plugin {{{2
-au BufNewFile,BufRead *.md set filetype=markdown tw=80 formatoptions+=ta 
 
 " Modeline {{{1
 " vim:set fdm=marker sw=4 ts=4:
