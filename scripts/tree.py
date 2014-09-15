@@ -17,10 +17,10 @@ def print_tree(root, depth=0):
     else:
         prefix = '%s%s%s' % (BRANCH_CHARS, ' ' * depth * 4, PREFIX_CHARS)
 
-    basename = os.path.basename(root) 
+    basename = os.path.basename(root)
     name, extension = os.path.splitext(basename)
 
-    if name not in EXCLUDED_FILES and extension not in EXCLUDED_EXTENSIONS: 
+    if name not in EXCLUDED_FILES and extension not in EXCLUDED_EXTENSIONS:
         print('%s%s' % (prefix, basename))
 
     if not os.path.isdir(root):
