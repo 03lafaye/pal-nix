@@ -21,6 +21,9 @@ fi
 )
 
 #-------- Source global definitions --------# {{{1
+if [ -f $SCRIPT_DIR/.git-completion.bash ]; then
+    . $SCRIPT_DIR/.git-completion.bash
+fi
 
 export PATH=".:/usr/sbin:~/share/bin:$PATH:$SCRIPT_DIR/scripts"
 export PATH=`path.sh`
