@@ -650,6 +650,9 @@ FromLineOverride=YES
 root:plafayet@qualcomm.com:qcmail1.qualcomm.com:587
 plafayet:plafayet@qualcomm.com:qcmail1.qualcomm.com:587
 
+# Use ImageMagick montage to stitch images {{{3
+montage [0-5].png -tile 5x1 -geometry +0+0 out.png
+
 # * CVS * {{{1 #
 # to add an existing directory to cvs {{{2
 cd directory
