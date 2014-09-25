@@ -21,6 +21,9 @@ export ANDROID_SWT="$ANDROID_SDK/tools/lib/x86_64"
 
 export PATH="$PATH:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_NDK_ROOT"
 
+# Using 1.6 to build on MacOS currently
+export JAVA_HOME=`/usr/libexec/java_home -v 1.6`
+
 # Chrome for Android environment variables # {{{1
 export CHROME_HOME="$HOME/chromium/src"
 export PATH="$PATH:$HOME/depot_tools"
