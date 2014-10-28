@@ -378,6 +378,9 @@ gq
 
 # * Unix * {{{1 #
 
+# Mac OSX batch image resizing {{{2
+sips --resampleWidth 800 *.jpg
+
 # JSON pretty print {{{2
 echo '{"foo": "lorem", "bar": "ipsum"}' | python -m json.tool
 

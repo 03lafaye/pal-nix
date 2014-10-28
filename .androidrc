@@ -10,6 +10,7 @@ export ANDROID_SDK=$ANDROID_HOME
 export ANDROID_SDK_ROOT=$ANDROID_SDK
 export ANDROID_NDK_ROOT="/Users/plafayette/android-ndk-r9d"
 export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
+export ANDROID_SDK_SYSTRACE="$ANDROID_SDK/platform-tools/systrace"
 export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
 
 #export ANDROID_PRODUCT_OUT="$ANDROID_HOME/out/target/product/$ANDROID_TARGET"
@@ -19,7 +20,8 @@ export ANDROID_SWT="$ANDROID_SDK/tools/lib/x86_64"
 #export USE_CCACHE=1
 #export CSCOPE_DB="$ANDROID_HOME/cscope"
 
-export PATH="$PATH:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_NDK_ROOT"
+export BUCK_PATH="~/facebook/buck/bin"
+#export PATH="$PATH:\"$ANDROID_SDK_PLATFORM_TOOLS\":\"$ANDROID_SDK_TOOLS\":\"$ANDROID_NDK_ROOT\":$BUCK_PATH:\"$ANDROID_SDK_SYSTRACE\""
 
 # Using 1.6 to build on MacOS currently
 export JAVA_HOME=`/usr/libexec/java_home -v 1.6`
@@ -303,6 +305,7 @@ function android_create_dev_icon {
 }
  
 
+alias loge="adb logcat AndroidRuntime:* *:S"
 alias logtime="adb logcat WebCore:* *:S"
 alias logvg="adb logcat webcore:* webcore_test:* webcoreglue:* graphicscontextopenvg:* graphicscontextandroid:* painteropenvg:* surfaceopenvg:* frameview:* renderobject:* skia:* DEBUG:* WebCore:* *:S"
 alias clc="adb logcat -c"
