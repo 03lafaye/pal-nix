@@ -23,8 +23,8 @@ export ANDROID_SWT="$ANDROID_SDK/tools/lib/x86_64"
 export BUCK_PATH="~/facebook/buck/bin"
 #export PATH="$PATH:\"$ANDROID_SDK_PLATFORM_TOOLS\":\"$ANDROID_SDK_TOOLS\":\"$ANDROID_NDK_ROOT\":$BUCK_PATH:\"$ANDROID_SDK_SYSTRACE\""
 
-# Using 1.6 to build on MacOS currently
-export JAVA_HOME=`/usr/libexec/java_home -v 1.6`
+# Using 1.7 to build on MacOS currently
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 
 # Chrome for Android environment variables # {{{1
 export CHROME_HOME="$HOME/chromium/src"

@@ -40,6 +40,9 @@ set shell=bash\ --login
 " Templates {{{2
 :autocmd BufNewFile *.html 0r $HOME/pal-nix/.vim/templates/skeleton.html
 
+" Recognize Android BUCK build files {{{2
+:autocmd BufNewFile,BufRead BUCK set ft=python
+
 " * User Interface * {{{1 "
 
 " drag visual blocks {{{2
