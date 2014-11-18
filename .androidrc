@@ -1,6 +1,6 @@
 # Android environment variables # {{{1
 export HOME2="/local/mnt/workspace/plafayet"
-export ANDROID_HOME="/Applications/Android Studio Beta.app/sdk"
+export ANDROID_HOME="/Users/plafayette/android-sdk"
 #export ANDROID_TARGET=""
 export ANDROID_IMG_SRC_DIR="$HOME2/png_images"
 export ANDROID_IMG_OUT_DIR="$HOME2/png_images/out"
@@ -21,7 +21,7 @@ export ANDROID_SWT="$ANDROID_SDK/tools/lib/x86_64"
 #export CSCOPE_DB="$ANDROID_HOME/cscope"
 
 export BUCK_PATH="~/facebook/buck/bin"
-#export PATH="$PATH:\"$ANDROID_SDK_PLATFORM_TOOLS\":\"$ANDROID_SDK_TOOLS\":\"$ANDROID_NDK_ROOT\":$BUCK_PATH:\"$ANDROID_SDK_SYSTRACE\""
+export PATH="$PATH:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_NDK_ROOT:$BUCK_PATH:$ANDROID_SDK_SYSTRACE"
 
 # Using 1.7 to build on MacOS currently
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
