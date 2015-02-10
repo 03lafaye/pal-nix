@@ -393,6 +393,9 @@ ffmpeg.exe -ss 00:04:00.00 -t 3 -i Secret_To_Success_-_Eric_Thomas.mp3 -acodec c
 # To extract mp3 track from an mp4 {{{2
 ffmpeg -i video.mp4 -b:a 192k audio.mp3
 
+# To add ID3 tags to an mp3 {{{2
+ffmpeg -i kendrick_lamar_-_the_blacker_the_berry.mp3 -b:a 192k -metadata title="The Blacker the Berry" -metadata artist="Kendrick Lamar" kendrick_lamar_-_the_blacker_the_berry.mp3 
+
 # Binary data tools {{{2
 objdump - Dumps symbols of so files with -T
 bsdiff  - Creates patches for binary files
