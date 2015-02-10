@@ -378,6 +378,8 @@ gq
 
 # * Unix * {{{1 #
 
+# Reverse incremental search history
+$ C-r # enables searching the history buffer with a typeahead interface
 # Mac OSX batch image resizing {{{2
 sips --resampleWidth 800 *.jpg
 
@@ -387,6 +389,9 @@ echo '{"foo": "lorem", "bar": "ipsum"}' | python -m json.tool
 # ffmpeg {{{2
 # To cut an mp3
 ffmpeg.exe -ss 00:04:00.00 -t 3 -i Secret_To_Success_-_Eric_Thomas.mp3 -acodec copy sleep.mp3
+
+# To extract mp3 track from an mp4 {{{2
+ffmpeg -i video.mp4 -b:a 192k audio.mp3
 
 # Binary data tools {{{2
 objdump - Dumps symbols of so files with -T

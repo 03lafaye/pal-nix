@@ -1,6 +1,6 @@
 # Android environment variables # {{{1
 export HOME2="/local/mnt/workspace/plafayet"
-export ANDROID_HOME="/Users/plafayette/android-sdk"
+export ANDROID_HOME="/Users/plafayette/Library/Android/sdk"
 #export ANDROID_TARGET=""
 export ANDROID_IMG_SRC_DIR="$HOME2/png_images"
 export ANDROID_IMG_OUT_DIR="$HOME2/png_images/out"
@@ -9,6 +9,8 @@ export ANDROID_BUILD_TOP=$ANDROID_HOME
 export ANDROID_SDK=$ANDROID_HOME
 export ANDROID_SDK_ROOT=$ANDROID_SDK
 export ANDROID_NDK_ROOT="/Users/plafayette/android-ndk-r9d"
+export ANDROID_NDK_REPOSITORY="~/android-ndk"
+export ANDROID_NDK="~/android-ndk/android-ndk-r9b"
 export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
 export ANDROID_SDK_SYSTRACE="$ANDROID_SDK/platform-tools/systrace"
 export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"

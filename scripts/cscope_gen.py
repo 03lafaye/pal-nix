@@ -5,7 +5,7 @@ import pdb
 import time
 import sys
 
-INCLUDED_FILES = ['.py', '.rb', '.java', '.c', '.h', '.cpp', '.cc', '.hpp', '.html', '.js', '.mk', '.xml', '.idl']
+INCLUDED_FILES = ['.py', '.rb', '.java', '.c', '.h', '.cpp', '.cc', '.hpp', '.html', '.js', '.mk', '.xml', '.idl', '.css']
 EXCLUDED_DIRS = ['.git', '.repo', 'out', '.svn']
 OUTPUT_FILE = 'cscope.files'
 
