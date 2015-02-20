@@ -8,9 +8,8 @@ export ANDROID_BUILD_TOP=$ANDROID_HOME
 #export ANDROID_TOOLCHAIN="$ANDROID_HOME/prebuilt/linux-x86/toolchain/arm-linux-androideabi-4.4.x/bin"
 export ANDROID_SDK=$ANDROID_HOME
 export ANDROID_SDK_ROOT=$ANDROID_SDK
-export ANDROID_NDK_ROOT="/Users/plafayette/android-ndk-r9d"
-export ANDROID_NDK_REPOSITORY="~/android-ndk"
-export ANDROID_NDK="~/android-ndk/android-ndk-r9b"
+export ANDROID_NDK_REPOSITORY="$HOME/android-ndk"
+export ANDROID_NDK="$HOME/android-ndk/android-ndk-r9d"
 export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
 export ANDROID_SDK_SYSTRACE="$ANDROID_SDK/platform-tools/systrace"
 export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
@@ -23,7 +22,7 @@ export ANDROID_SWT="$ANDROID_SDK/tools/lib/x86_64"
 #export CSCOPE_DB="$ANDROID_HOME/cscope"
 
 export BUCK_PATH="~/facebook/buck/bin"
-export PATH="$PATH:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_NDK_ROOT:$BUCK_PATH:$ANDROID_SDK_SYSTRACE"
+export PATH="$PATH:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_NDK:$BUCK_PATH:$ANDROID_SDK_SYSTRACE"
 
 # Using 1.7 to build on MacOS currently
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
@@ -56,6 +55,10 @@ function android_process_memory {
         echo "Memory usage for $1 process id $process"
         adb shell dumpsys meminfo $process
     fi
+}
+
+function android_cpu_info {
+    adb shell cat /proc/cpuinfo
 }
 
 function android_cpu_freq {
@@ -305,7 +308,6 @@ function android_create_dev_icon {
     convert -background '#0008' -fill white -gravity center -size ${width}x40 \
     caption:"${version} ${branch} ${commit}" $1 +swap -gravity south -composite $1
 }
- 
 
 alias loge="adb logcat AndroidRuntime:* *:S"
 alias logtime="adb logcat WebCore:* *:S"

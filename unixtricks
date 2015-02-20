@@ -378,6 +378,9 @@ gq
 
 # * Unix * {{{1 #
 
+# CPU info {{{2
+cat /proc/cpuinfo
+
 # Reverse incremental search history
 $ C-r # enables searching the history buffer with a typeahead interface
 # Mac OSX batch image resizing {{{2
