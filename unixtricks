@@ -378,6 +378,9 @@ gq
 
 # * Unix * {{{1 #
 
+# Create big dummy temp file {{{2
+dd if=/dev/zero of=upload_test.bin bs=1000000 count=1
+
 # CPU info {{{2
 cat /proc/cpuinfo
 
