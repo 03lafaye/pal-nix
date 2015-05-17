@@ -844,6 +844,10 @@ update date set date = date + INTERVAL 1 HOUR where condition
 
 # * GDB * {{{1 #
 # Daily usage {{{2
+
+# Compile with -O0 to make sure that functions are not inlined
+
+ctrl+l # clear command screen
 directory $PATH # Add source directory path
 br namespace::class::method # Setting breakpoints by method
 br fileName.cpp:129  # Setting breakpoints by file

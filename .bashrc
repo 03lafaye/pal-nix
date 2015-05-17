@@ -104,22 +104,19 @@ alias gitbr='for k in `git branch | perl -pe s/^..//`; do echo -e `git show --pr
 
 #-------- Colors  --------# {{{1
 
-red='\e[0;31m'
-RED='\e[1;31m'
-blue='\e[0;34m'
-BLUE='\e[1;34m'
-cyan='\e[0;36m'
-CYAN='\e[1;36m'
-purple='\e[0;35m'
-PURPLE='\e[1;35m'
-green='\e[0;32m'
-NC='\e[0m' # no color
+red="\[$(tput setaf 1)\]"
+blue="\[$(tput setaf 4)\]"
+cyan="\[$(tput setaf 6)\]"
+purple="\[$(tput setaf 5)\]"
+green="\[$(tput setaf 2)\]"
+white="\[$(tput setaf 7)\]" # white
 
 #-------- Shell Prompt --------# {{{1
 
 A=${cyan}
 B=${purple}
 C=${green}
+NC='\e[0m' # no color
 
 # Add git branch to command prompt
 function parse_git_branch
