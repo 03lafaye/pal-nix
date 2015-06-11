@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import eyed3
 import os
 import sys
