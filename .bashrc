@@ -101,6 +101,7 @@ alias wgetsite="wget --recursive --no-clobber --page-requisites --html-extension
 alias g++d="g++ -g -O0 -fno-inline"
 alias gccd="gcc -g -O0 -fno-inline"
 alias gitbr='for k in `git branch | perl -pe s/^..//`; do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k -- | head -n 1`\\t$k; done | sort -r'
+alias cpl="find . -name '*.mp3' -execdir bash -c 'file=\"{}\"; printf \"%s\n\" \"${file##*/}\" >> \"${PWD##*/}.m3u\"' \;"
 
 #-------- Colors  --------# {{{1
 
@@ -137,4 +138,12 @@ function fastprompt()
             PS1="\[${C}\][$HOSTNAME]\[${NC}\] \W\$(parse_git_branch) > " ;;
     esac
 }
-fastprompt
+
+function nocolorprompt()
+{
+    unset PROMPT_COMMAND
+    PS1="[$HOSTNAME] \W\$(parse_git_branch) > "
+} 
+
+nocolorprompt
+# fastprompt
