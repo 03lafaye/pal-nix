@@ -379,8 +379,8 @@ gq
 # * Unix * {{{1 #
 
 # Convert iTunes mp4 and m4a to mp3 {{{2
-for f in *.mp4; do ffmpeg -i "$f" -codec:v copy -codec:a libmp3lame -q:a 2 newfiles/"${f%.m4a}.mp3"; done
-for f in *.m4a; do ffmpeg -i "$f" -codec:v copy -codec:a libmp3lame -q:a 2 newfiles/"${f%.m4a}.mp3"; done
+for f in *.mp4; do ffmpeg -i "$f" -codec:v copy -codec:a libmp3lame -q:a 0 newfiles/"${f%.m4a}.mp3"; done
+for f in *.m4a; do ffmpeg -i "$f" -codec:v copy -codec:a libmp3lame -q:a 0 newfiles/"${f%.m4a}.mp3"; done
 
 # Create a video from a still frame {{{2
 ffmpeg -loop 1 -i equirect-projection-sample.jpg equirect-projection-sample.mp4
