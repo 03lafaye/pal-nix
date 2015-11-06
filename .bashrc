@@ -126,11 +126,16 @@ function parse_git_branch
   ref=$(git symbolic-ref HEAD 2> /dev/null)
 
   # Check if mercurial repo
-  if [ ! -n "${ref}" ]; then
-    ref=$(_dotfiles_scm_info 2> /dev/null) || return
+  if [ ! -z "${ref}" ]; then
+    ref=$(_dotfiles_scm_info 2> /dev/null)
     ref=${ref//\(}
     ref=${ref//\)}
     ref=${ref// }
+  fi
+
+  if [ -z "${ref}" ]; then
+    echo $ref
+    return
   fi
 
   echo " ("${ref#refs/heads/}")"
