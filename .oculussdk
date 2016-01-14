@@ -1,0 +1,23 @@
+# used by Oculus native apps builds
+export ANDROID_NDK=/Users/plafayette/android-ndk/android-ndk-r10e
+export PATH=${PATH}:${ANDROID_NDK}
+export PATH=`path.sh`
+
+alias build-cinema="time /Users/plafayette/oculus-apps-native/Cinema/Projects/Android/build.py"
+alias cinema-stack="~/android-ndk/android-ndk-r10d/ndk-stack -sym ~/oculus-mobile-sdk/VrApps/Native/Cinema/Projects/Android/obj/local/armeabi-v7a/"
+
+alias oculus-native="pd /Users/plafayette/oculus-apps-native/"  
+alias cinema="pd /Users/plafayette/oculus-apps-native/Cinema"  
+alias systemactivities="pd /Users/plafayette/oculus-apps-native/SystemActivities"  
+alias 360videos="pd /Users/plafayette/oculus-apps-native/Oculus360Videos"  
+alias 360photos="pd /Users/plafayette/oculus-apps-native/Oculus360Photos"  
+
+
+alias launch-cinema="adb shell am start com.oculus.cinema/.MainActivity"
+alias record-cinema="adb shell \"echo dev_videoCapture 1 dev_gpuLevel 3 > /sdcard/.oculusprefs\""
+alias stoprecord-cinema="adb shell \"echo > /sdcard/.oculusprefs\""
+
+alias oculus-enable-vr="adb shell \"echo dev_vrsvc 0 > /sdcard/.oculusprefs\""
+
+
+# vi:set ft=sh fdm=marker sw=4 ts=4:
