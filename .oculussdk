@@ -6,11 +6,15 @@ export PATH=`path.sh`
 alias build-cinema="time /Users/plafayette/oculus-apps-native/Cinema/Projects/Android/build.py"
 alias cinema-stack="~/android-ndk/android-ndk-r10d/ndk-stack -sym ~/oculus-mobile-sdk/VrApps/Native/Cinema/Projects/Android/obj/local/armeabi-v7a/"
 
-alias oculus-native="pd /Users/plafayette/oculus-apps-native/"  
-alias cinema="pd /Users/plafayette/oculus-apps-native/Cinema"  
-alias systemactivities="pd /Users/plafayette/oculus-apps-native/SystemActivities"  
-alias 360videos="pd /Users/plafayette/oculus-apps-native/Oculus360Videos"  
-alias 360photos="pd /Users/plafayette/oculus-apps-native/Oculus360Photos"  
+function debugCinemaProcess {
+  /Users/plafayette/fbsource/fbandroid/scripts/ogdb `adb shell ps | grep 'com.oculus.cinema' | awk '{print $2}' | sed -e 's/  *$//'`
+}
+
+alias oculus-native="pd /Users/plafayette/oculus-apps-native/"
+alias cinema="pd /Users/plafayette/oculus-apps-native/Cinema"
+alias systemactivities="pd /Users/plafayette/oculus-apps-native/SystemActivities"
+alias 360videos="pd /Users/plafayette/oculus-apps-native/Oculus360Videos"
+alias 360photos="pd /Users/plafayette/oculus-apps-native/Oculus360Photos"
 
 
 alias launch-cinema="adb shell am start com.oculus.cinema/.MainActivity"

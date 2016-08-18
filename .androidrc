@@ -309,7 +309,7 @@ function android_create_dev_icon {
     caption:"${version} ${branch} ${commit}" $1 +swap -gravity south -composite $1
 }
 
-alias loge="adb logcat AndroidRuntime:* *:S"
+alias loge="adb logcat AndroidRuntime:* System.err:* *:S"
 alias logtime="adb logcat WebCore:* *:S"
 alias logvg="adb logcat webcore:* webcore_test:* webcoreglue:* graphicscontextopenvg:* graphicscontextandroid:* painteropenvg:* surfaceopenvg:* frameview:* renderobject:* skia:* DEBUG:* WebCore:* *:S"
 alias clc="adb logcat -c"

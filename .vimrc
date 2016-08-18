@@ -43,6 +43,9 @@ set shell=bash\ --login
 " Recognize Android BUCK build files {{{2
 :autocmd BufNewFile,BufRead BUCK set ft=python
 
+" Recognize Android gradle build files {{{2
+:autocmd BufNewFile,BufRead *.gradle set ft=groovy
+
 " * User Interface * {{{1 "
 
 " drag visual blocks {{{2
