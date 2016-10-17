@@ -384,6 +384,16 @@ gq
 
 # * Unix * {{{1 #
 
+# Encode m4a files in directory to mp3 preserving quality {{{2
+$ mkdir newfiles
+$ for f in *.m4a; do ffmpeg -i "$f" -codec:v copy -codec:a libmp3lame -q:a 2 newfiles/"${f%.m4a}.mp3"; done
+
+# Extract frame screenshot at time {{{2
+ffmpeg -ss 00:00:06 -i rotated-2x3-sample.mp4 -t 1 -f image2 rotated2x3.jpg
+
+# Create video from looping image {{{2
+ffmpeg -loop 1 -i rotated2x3.jpg -t 300 rotated-2x3-frame.mp4
+
 # Show hidden characters in output using od -c or cat -v {{{2
 [plafayette-mbp.local] scripts > adb shell ps | grep -e 'com.oculus.cinema' | od -c
 0000000    u   0   _   a   2   6   3               1   7   6   5   2
