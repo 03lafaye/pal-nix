@@ -9,6 +9,8 @@ alias build-cinema="time /Users/plafayette/oculus-apps-native/Cinema/Projects/An
 alias cinema-stack="~/android-ndk/android-ndk-r10d/ndk-stack -sym ~/oculus-mobile-sdk/VrApps/Native/Cinema/Projects/Android/obj/local/armeabi-v7a/"
 
 function debugCinemaProcess {
+  process=`adb shell ps | grep 'com.oculus.cinema' | awk '{print $2}' | sed -e 's/  *$//'`
+  echo "Attaching gdb to process $process"
   /Users/plafayette/fbsource/fbandroid/scripts/ogdb `adb shell ps | grep 'com.oculus.cinema' | awk '{print $2}' | sed -e 's/  *$//'`
 }
 
