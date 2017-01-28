@@ -10,7 +10,7 @@
 :%!xxd -s 264836 # Open binary file then use -s to seek to offset
 
 # tabbed indent for directory {{{2
-au BufRead,BufEnter /Users/plafayette/oculus-apps-native/* set noet ci pi sts=0 sw=4 ts=4
+# au BufRead,BufEnter /Users/plafayette/oculus-apps-native/* set noet ci pi sts=0 sw=4 ts=4
 
 # Copy to Mac OS X clipboard {{{2
 :!pbcopy
