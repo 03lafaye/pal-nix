@@ -10,7 +10,7 @@
 :%!xxd -s 264836 # Open binary file then use -s to seek to offset
 
 # tabbed indent for directory {{{2
-# au BufRead,BufEnter /Users/plafayette/oculus-apps-native/* set noet ci pi sts=0 sw=4 ts=4
+# au BufRead,BufEnter /some/directory/dothisthing/* set noet ci pi sts=0 sw=4 ts=4
 
 # Copy to Mac OS X clipboard {{{2
 :!pbcopy
@@ -383,6 +383,12 @@ gqap
 gq
 
 # * Unix * {{{1 #
+
+# Grep only in files with extension {{{2
+grep -r -i --include \*.h --include \*.cpp 'gl_VertexIndex' .
+
+# Reformat text block to column width using fold {{{2
+fold --spaces --width 75 | sed -e 's/^/ /'
 
 # Encode m4a files in directory to mp3 preserving quality {{{2
 $ mkdir newfiles
