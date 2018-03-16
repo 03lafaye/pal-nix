@@ -27,8 +27,9 @@ for root, dirs, files in os.walk(current_path):
             print(file_path)
 
 # -b: just build
-# -q: create inverted index
-cmd = 'cscope -b -q'
+# -q: create inverted index for faster lookup
+# -R: recurse in subdirectories
+cmd = 'cscope -b -R -q'
 print(cmd)
 os.system(cmd)
 

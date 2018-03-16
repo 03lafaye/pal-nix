@@ -15,6 +15,9 @@
 "##                                                         ##
 "#############################################################
 
+" disable for now... kind of annoying
+let loaded_autoswap_mac = 1
+
 
 " If already loaded, we're done...
 if exists("loaded_autoswap_mac")

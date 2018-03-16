@@ -3,6 +3,7 @@
 #/Users/plafayette/android-ndk/android-ndk-r10e
 # export ANDROID_NDK=/Users/plafayette/android-ndk/android-ndk-r10e
 export ANDROID_NDK=/Users/plafayette/android-ndk/android-ndk-r12b
+export ANDROID_NDK_HOME=/Users/plafayette/android-ndk/android-ndk-r12b
 export PATH=${PATH}:${ANDROID_NDK}
 export PATH=`path.sh`
 
