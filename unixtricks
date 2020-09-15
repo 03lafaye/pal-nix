@@ -384,6 +384,10 @@ gq
 
 # * Unix * {{{1 #
 
+# Crop half of video with ffmpeg {{{2
+ffmpeg -i in.mp4 -filter:v "crop=out_w:out_h:x:y" out.mp4
+ffmpeg -i quillplayer-2d-vr-dual-bugs.mp4 -filter:v "crop=1440:1600:1440:0" out.mp4
+
 # Grep only in files with extension {{{2
 grep -r -i --include \*.h --include \*.cpp 'gl_VertexIndex' .
 
@@ -739,6 +743,34 @@ svn co file:///home/pierre/svn/repos/proj
 
 # Logs for a date range {{{2
 svn log -r {YYYY-mm-dd}:{YYYY-mm-dd} path
+
+# * MERCURIAL * {{{1 #
+
+# Stashing / shelving {{{2
+
+# Quickly stash uncommited changes in the working copy prior to pushing or when changing branches
+hg shelve
+hg unshelve
+
+# Interactive rebase: reorder, fold, drop, edit commits {{{2
+
+# equivalent of git rebase --interactive
+hg histedit da522e1d744f36bbbde8e372edb512d748809ee7
+
+# Undo commit {{{2
+
+hg strip --keep -r .
+# hint[strip-uncommit]: 'hg strip' may be deprecated in the future - use 'hg uncommit' or 'hg undo -k' to undo commits
+# hint[hint-ack]: use 'hg hint --ack strip-uncommit' to silence these hints
+
+# Do interactive hunk selection when preparing commit {{{2
+
+# TUI interface similar to git add --interactive
+hg crecord (hg commit -i)
+hg ci -i --amend
+
+# Find commit where file was removed {{{2
+hg log -r 'removes(xplat/Apps/Quill/Quill/libQuillPlayer/src/mngrAnimation.cpp)'
 
 # * GIT * {{{1 #
 

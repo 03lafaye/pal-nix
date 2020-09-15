@@ -161,6 +161,7 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockSt
 set tabstop=4        "indentation levels every N columns
 set virtualedit=all  "allows the cursor to stray beyond defined text
 set wildmode=list:longest,full  "autocompletion; default to longest shared prefix
+set diffopt-=internal "fix issue on macos catalina version of vim
 set diffopt+=iwhite  "vimdiff to ignore changes in whitespace
 set diffexpr=SeriouslyIgnoreWhitespace()
 highlight CursorLine guibg=slategray guifg=white ctermbg=blue ctermfg=white

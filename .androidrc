@@ -25,7 +25,7 @@ export BUCK_PATH="~/facebook/buck/bin"
 export PATH="$PATH:$ANDROID_SDK_PLATFORM_TOOLS:$ANDROID_SDK_TOOLS:$ANDROID_NDK:$BUCK_PATH:$ANDROID_SDK_SYSTRACE"
 
 # Using 1.7 to build on MacOS currently
-export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+# export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 
 # Chrome for Android environment variables # {{{1
 export CHROME_HOME="$HOME/chromium/src"
@@ -55,6 +55,10 @@ function android_process_memory {
         echo "Memory usage for $1 process id $process"
         adb shell dumpsys meminfo $process
     fi
+}
+
+function android_gpu_freq {
+    adb shell cat /sys/class/kgsl/kgsl-3d0/devfreq/cur_freq
 }
 
 function android_cpu_info {

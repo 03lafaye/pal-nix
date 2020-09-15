@@ -2,10 +2,16 @@
 
 #/Users/plafayette/android-ndk/android-ndk-r10e
 # export ANDROID_NDK=/Users/plafayette/android-ndk/android-ndk-r10e
-export ANDROID_NDK=/Users/plafayette/android-ndk/android-ndk-r12b
-export ANDROID_NDK_HOME=/Users/plafayette/android-ndk/android-ndk-r12b
+# export ANDROID_NDK=/Users/plafayette/android-ndk/android-ndk-r12b
+export ANDROID_NDK_REPOSITORY=/Users/plafayette/android-ndk
+export ANDROID_NDK=/Users/plafayette/android-ndk/android-ndk-r15c
+# export ANDROID_NDK=/Users/plafayette/android-ndk/android-ndk-r16b
+export ANDROID_NDK_HOME=/Users/plafayette/android-ndk/android-ndk-r15c
+# export ANDROID_NDK_HOME=/Users/plafayette/android-ndk/android-ndk-r12b
+# export ANDROID_NDK_HOME=/Users/plafayette/android-ndk/android-ndk-r16b
 export PATH=${PATH}:${ANDROID_NDK}
 export PATH=`path.sh`
+export PATH="/usr/local/opt/node@10/bin:$PATH"
 
 alias build-cinema="time /Users/plafayette/oculus-apps-native/Cinema/Projects/Android/build.py"
 alias cinema-stack="~/android-ndk/android-ndk-r10d/ndk-stack -sym ~/oculus-mobile-sdk/VrApps/Native/Cinema/Projects/Android/obj/local/armeabi-v7a/"
@@ -21,6 +27,11 @@ alias cinema="pd /Users/plafayette/oculus-apps-native/Cinema"
 alias systemactivities="pd /Users/plafayette/oculus-apps-native/SystemActivities"
 alias 360videos="pd /Users/plafayette/oculus-apps-native/Oculus360Videos"
 alias 360photos="pd /Users/plafayette/oculus-apps-native/Oculus360Photos"
+
+alias vrshell-apps="pd /Users/plafayette/ovrsource-skyline/Software/Apps/skyline/oculus-apps-native/VrShell"
+
+alias qplayer="pd /Users/plafayette/ovrsource/Software/Apps/Native/QuillPlayer"
+alias quillsrc="pd /Users/plafayette/ovrsource-quill"
 
 
 alias launch-cinema="adb shell am start com.oculus.cinema/.MainActivity"
