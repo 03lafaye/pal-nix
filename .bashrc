@@ -146,19 +146,19 @@ function fastprompt()
     unset PROMPT_COMMAND
     case $TERM in
         *term | rxvt )
-            PS1="\[${A}\][$HOSTNAME]\[${NC}\] \W\$(parse_git_branch) > " ;;
+            PS1="\[${A}\][$USERNAME]\[${NC}\] \W\$(parse_git_branch) > " ;;
         linux )
-            PS1="\[${A}\][$HOSTNAME]\[${NC}\] \W\$(parse_git_branch) > " ;;
+            PS1="\[${A}\][$USERNAME]\[${NC}\] \W\$(parse_git_branch) > " ;;
         * )
-            PS1="\[${C}\][$HOSTNAME]\[${NC}\] \W\$(parse_git_branch) > " ;;
+            PS1="\[${C}\][$USERNAME]\[${NC}\] \W\$(parse_git_branch) > " ;;
     esac
 }
 
 function nocolorprompt()
 {
     unset PROMPT_COMMAND
-    PS1="[$HOSTNAME] \W\$(parse_git_branch) > "
+    PS1="[$USERNAME] \W\$(parse_git_branch) > "
 }
 
-nocolorprompt
-# fastprompt
+# nocolorprompt
+fastprompt
