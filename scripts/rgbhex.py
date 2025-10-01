@@ -32,7 +32,7 @@ def html_color_to_rgb(colorstring):
     return (r, g, b)
 
 def convert_color(color_str):
-  if color_str[0] == '#' or color_str[0] > '9':
+  if color_str[0] == '#':
     return html_color_to_rgb(color_str)
   rgb = color_str.split(',')
   if (len(rgb) == 3): 

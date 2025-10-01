@@ -1,8 +1,6 @@
-# unixtricks - seemingly useful unix knowledge
 #
-# $Author$
-# $Date$
-# $Revision$
+# unixtricks - seemingly useful unix command line knowledge
+#
 
 # * Vi * {{{1 #
 
@@ -942,6 +940,12 @@ set overload-resolution off # if getting errors about not being able to resolve 
 p/d 0x10 # print decimal value
 p/t 0x10 # print binary value
 p/x 256 # print hex value
+
+# * ANDROID * {{{1 #
+# android studio run app stuck waiting for debugger {{{2
+
+adb shell am clear-debug-app
+
 
 # * Modeline * {{{1 #
 # vi:set fdm=marker:
