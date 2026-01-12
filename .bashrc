@@ -110,49 +110,44 @@ blue="\[$(tput setaf 4)\]"
 cyan="\[$(tput setaf 6)\]"
 purple="\[$(tput setaf 5)\]"
 green="\[$(tput setaf 2)\]"
-white="\[$(tput setaf 7)\]" # white
+white="\[$(tput setaf 7)\]"
+NC='\e[0m' # no color
 
 #-------- Shell Prompt --------# {{{1
 
-A=${cyan}
-B=${purple}
-C=${green}
-NC='\e[0m' # no color
 
 # Add git branch to command prompt
 
 function parse_git_branch
 {
+  # Get the full reference (e.g., refs/heads/main)
   ref=$(git symbolic-ref HEAD 2> /dev/null)
 
-  # Check if mercurial repo
-  if [ ! -z "${ref}" ]; then
-    ref=$(_dotfiles_scm_info 2> /dev/null)
-    ref=${ref//\(}
-    ref=${ref//\)}
-    ref=${ref// }
-  fi
-
+  # If we are not in a git repo, exit without printing anything
   if [ -z "${ref}" ]; then
-    echo $ref
     return
   fi
 
+  # Strip "refs/heads/" from the output and wrap in parentheses
   echo " ("${ref#refs/heads/}")"
 }
 
-function fastprompt()
-{
+function fastprompt {
     unset PROMPT_COMMAND
+
+    # Select color based on terminal type
     case $TERM in
         *term | rxvt )
-            PS1="\[${A}\][$USERNAME]\[${NC}\] \W\$(parse_git_branch) > " ;;
+            local COLOR=$cyan ;;
         linux )
-            PS1="\[${A}\][$USERNAME]\[${NC}\] \W\$(parse_git_branch) > " ;;
+            local COLOR=$cyan ;;
         * )
-            PS1="\[${C}\][$USERNAME]\[${NC}\] \W\$(parse_git_branch) > " ;;
+            local COLOR=$green ;;
     esac
+
+    PS1="${COLOR}[$USERNAME]${NC} \W\$(parse_git_branch) > "
 }
+
 
 function nocolorprompt()
 {
