@@ -11,23 +11,23 @@ PALNIX="$HOME/pal-nix"
 PALNIX_RO="$HOME/pal-nix-read-only"
 
 SCRIPT_DIR=$(
-if [ -d "$PALNIX" ]; then
+  if [ -d "$PALNIX" ]; then
     echo "$PALNIX"
-elif [ -d "$PALNIX_RO" ]; then
+  elif [ -d "$PALNIX_RO" ]; then
     echo "$PALNIX_RO"
-else
+  else
     echo '.'
-fi
+  fi
 )
 
 #-------- Source global definitions --------# {{{1
 if [ -f $SCRIPT_DIR/.git-completion.bash ]; then
-    . $SCRIPT_DIR/.git-completion.bash
+  . $SCRIPT_DIR/.git-completion.bash
 fi
 
 export PATH=".:/usr/sbin:~/share/bin:$PATH:$SCRIPT_DIR/scripts"
-export PATH=`path.sh`
-export EDITOR="vim"
+export PATH=$(path.sh)
+export EDITOR="nvim"
 export GREP_OPTIONS="--color --exclude-dir=\.svn"
 
 # Make sure sudo uses the same path
@@ -41,37 +41,37 @@ set -o vi # set vi commandline mode
 bind 'set bell-style none' # turns off annoying command line bell
 
 if [ ! -n "${TERM}" ]; then
-    TERM=cygwin
+  TERM=cygwin
 fi
 
 #-------- Source user definitions --------# {{{1
 
 if [ "$COMPUTERNAME" = 'VEGETO' -o "$COMPUTERNAME" = 'SHENRON' ]; then
-    source $SCRIPT_DIR/shenron.bashrc
+  source $SCRIPT_DIR/shenron.bashrc
 fi
 
 if [ "$COMPUTERNAME" = 'SANGOHAN' ]; then
-    source $SCRIPT_DIR/sangohan.bashrc
+  source $SCRIPT_DIR/sangohan.bashrc
 fi
 
 if [ "$COMPUTERNAME" = 'SANGOTEN' ]; then
-    source $SCRIPT_DIR/sangoten.bashrc
+  source $SCRIPT_DIR/sangoten.bashrc
 fi
 
 #-------- Aliases and Functions --------#  {{{1
 
-alias h="pd ~"  # go home
-alias c="clear" # clean up
-function pd() { pushd "$1" 1> /dev/null; } # push directory on to stack
-alias bk="popd 1> /dev/null" # pop directory from stack
+alias h="pd ~"                            # go home
+alias c="clear"                           # clean up
+function pd() { pushd "$1" 1>/dev/null; } # push directory on to stack
+alias bk="popd 1> /dev/null"              # pop directory from stack
 # The 'ls' family
 alias ls="ls -F -G"
 alias la="ls -aF"
 alias ll="ls -lh"
-alias lx="ls -lXB" # sort by extension
-alias lc="ls -lcr" # sort by change time
-alias lr="ls -lR"  # recursive ls
-alias lt="ls -ltr" # sort by date
+alias lx="ls -lXB"                                    # sort by extension
+alias lc="ls -lcr"                                    # sort by change time
+alias lr="ls -lR"                                     # recursive ls
+alias lt="ls -ltr"                                    # sort by date
 function lm() { ll "$*" | awk '{print $6, $7, $8}'; } # last modification date for a file
 alias background="xv -root -quit -max -rmode 5"
 alias brc="vim '$SCRIPT_DIR/.bashrc'"
@@ -105,23 +105,25 @@ alias cpl="find . -name '*.mp3' -execdir bash -c 'file=\"{}\"; printf \"%s\n\" \
 
 #-------- Colors  --------# {{{1
 
-red="\[$(tput setaf 1)\]"
-blue="\[$(tput setaf 4)\]"
-cyan="\[$(tput setaf 6)\]"
-purple="\[$(tput setaf 5)\]"
-green="\[$(tput setaf 2)\]"
-white="\[$(tput setaf 7)\]"
-NC='\e[0m' # no color
+# 1. Store RAW color codes in variables (Remove all \[ and \] from here)
+red=$(tput setaf 1)
+blue=$(tput setaf 4)
+cyan=$(tput setaf 6)
+purple=$(tput setaf 5)
+green=$(tput setaf 2)
+white=$(tput setaf 7)
+NC=$(tput sgr0) # Safer to use tput's native reset command
+
+# 2. Force Bash to constantly check the window size (Crucial for iTerm2 split panes)
+shopt -s checkwinsize
 
 #-------- Shell Prompt --------# {{{1
 
-
 # Add git branch to command prompt
 
-function parse_git_branch
-{
+function parse_git_branch {
   # Get the full reference (e.g., refs/heads/main)
-  ref=$(git symbolic-ref HEAD 2> /dev/null)
+  ref=$(git symbolic-ref HEAD 2>/dev/null)
 
   # If we are not in a git repo, exit without printing anything
   if [ -z "${ref}" ]; then
@@ -133,26 +135,30 @@ function parse_git_branch
 }
 
 function fastprompt {
-    unset PROMPT_COMMAND
+  unset PROMPT_COMMAND
 
-    # Select color based on terminal type
-    case $TERM in
-        *term | rxvt )
-            local COLOR=$cyan ;;
-        linux )
-            local COLOR=$cyan ;;
-        * )
-            local COLOR=$green ;;
-    esac
+  # Select color based on terminal type
+  case $TERM in
+  *term | rxvt)
+    local COLOR=$cyan
+    ;;
+  linux)
+    local COLOR=$cyan
+    ;;
+  *)
+    local COLOR=$green
+    ;;
+  esac
 
-    PS1="${COLOR}[$USERNAME]${NC} \W\$(parse_git_branch) > "
+  # Wrap $COLOR and $NC in \[ and \] to avoid issue with iTerm2 rendering
+
+  # 3. Apply the \[ and \] brackets DIRECTLY around the variables in PS1
+  PS1="\[${COLOR}\][$USERNAME]\[${NC}\] \W\$(parse_git_branch) > "
 }
 
-
-function nocolorprompt()
-{
-    unset PROMPT_COMMAND
-    PS1="[$USERNAME] \W\$(parse_git_branch) > "
+function nocolorprompt() {
+  unset PROMPT_COMMAND
+  PS1="[$USERNAME] \W\$(parse_git_branch) > "
 }
 
 # nocolorprompt
